@@ -5,22 +5,21 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //task 8
-        valueCounter();
+        isValueInArray();
     }
 
-    private static void valueCounter() {
+    private static void isValueInArray() {
         Scanner sc = new Scanner(System.in);
         int[] array = createAndFillArray();
         System.out.println("Enter searched value:");
         int searched = sc.nextInt();
-        int counter = 0;
+        boolean found = false;
         for (int i : array) {
             if (i == searched){
-                counter++;
+                found = true;
             }
         }
-        System.out.println("Searched value appears " + counter + " times in this array");
-
+        System.out.println(found ? "Found" : "Not found");
     }
 
     private static int[] createAndFillArray() {
