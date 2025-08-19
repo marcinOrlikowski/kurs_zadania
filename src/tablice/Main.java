@@ -4,19 +4,22 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //task 7
-        lowestValue();
+        //task 8
+        valueCounter();
     }
 
-    private static void lowestValue() {
+    private static void valueCounter() {
+        Scanner sc = new Scanner(System.in);
         int[] array = createAndFillArray();
-        int lowest = Integer.MAX_VALUE;
+        System.out.println("Enter searched value:");
+        int searched = sc.nextInt();
+        int counter = 0;
         for (int i : array) {
-            if (i < lowest){
-                lowest = i;
+            if (i == searched){
+                counter++;
             }
         }
-        System.out.println("Lowest value in array is: " + lowest);
+        System.out.println("Searched value appears " + counter + " times in this array");
 
     }
 
