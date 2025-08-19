@@ -4,11 +4,23 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //task 3
-        createAndFillArray();
+        //task 6
+        highestValue();
     }
 
-    private static void createAndFillArray() {
+    private static void highestValue() {
+        int[] array = createAndFillArray();
+        int highest = 0;
+        for (int i : array) {
+            if (i > highest){
+                highest = i;
+            }
+        }
+        System.out.println("Highest value in array is: " + highest);
+
+    }
+
+    private static int[] createAndFillArray() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter size of array");
         int size = sc.nextInt();
@@ -19,10 +31,6 @@ public class Main {
             array[i] = sc.nextInt();
         }
 
-        System.out.println("Values in array:");
-
-        for (int i : array) {
-            System.out.println(i);
-        }
+        return array;
     }
 }
