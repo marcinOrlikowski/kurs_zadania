@@ -4,19 +4,19 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //task 6
-        highestValue();
+        //task 7
+        lowestValue();
     }
 
-    private static void highestValue() {
+    private static void lowestValue() {
         int[] array = createAndFillArray();
-        int highest = 0;
+        int lowest = Integer.MAX_VALUE;
         for (int i : array) {
-            if (i > highest){
-                highest = i;
+            if (i < lowest){
+                lowest = i;
             }
         }
-        System.out.println("Highest value in array is: " + highest);
+        System.out.println("Lowest value in array is: " + lowest);
 
     }
 
@@ -30,7 +30,6 @@ public class Main {
             System.out.println("Enter " + (i + 1 + " value"));
             array[i] = sc.nextInt();
         }
-
         return array;
     }
 }
