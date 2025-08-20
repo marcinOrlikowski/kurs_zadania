@@ -1,20 +1,25 @@
 package tablice;
 
-import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
         //task 14
-        matrix();
+        matrixSum();
     }
 
-    private static void matrix() {
+    private static void matrixSum() {
+        int sum = 0;
         int[][] matrix = {
                 {1, 2, 3},
                 {4, 5, 6},
-                {7, 8, 9}};
+                {7, 8, 9}
+        };
+        
         for (int[] ints : matrix) {
-            System.out.println(Arrays.toString(ints));
+            for (int i : ints) {
+                sum += i;
+            }
         }
+        System.out.println("Sum of values in matrix is: " + sum);
     }
 }
+
