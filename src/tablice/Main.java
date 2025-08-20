@@ -3,23 +3,26 @@ package tablice;
 public class Main {
     public static void main(String[] args) {
         //task 14
-        matrixSum();
+        matrixSumOfRows();
     }
 
-    private static void matrixSum() {
+    private static void matrixSumOfRows() {
         int sum = 0;
         int[][] matrix = {
-                {1, 2, 3},
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        
-        for (int[] ints : matrix) {
-            for (int i : ints) {
-                sum += i;
+
+        for (int i = 0; i < matrix.length; i++) {
+            sum = 0;
+            for (int j = 0; j < matrix[i].length; j++) {
+                sum += matrix[i][j];
             }
+            System.out.println("Sum in " + (i + 1) + " row is: " + sum);
         }
-        System.out.println("Sum of values in matrix is: " + sum);
+
     }
 }
+
+
 
