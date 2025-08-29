@@ -90,5 +90,8 @@ public class Main {
             }
         }
 
+        //task 17
+        System.out.println(marcin.compareAge(mateusz));
+
     }
 }
