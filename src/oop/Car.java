@@ -9,6 +9,11 @@ public class Car {
         this.yearOfProduction = 2000;
     }
 
+    public Car(String brand, int yearOfProduction) {
+        this.brand = brand;
+        this.yearOfProduction = yearOfProduction;
+    }
+
     @Override
     public String toString() {
         return "Brand: " + brand + ", year of production: " + yearOfProduction;
