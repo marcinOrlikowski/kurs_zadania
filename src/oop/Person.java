@@ -10,6 +10,11 @@ public class Person {
     }
 
     public void introduceYourself(){
-        System.out.println("Name: " + this.name + ", age: " + this.age);
+        System.out.println(" Name: " + this.name + ", age: " + this.age);
+    }
+
+    public void introduceYourself(String greeting){
+        System.out.print(greeting);
+        this.introduceYourself();
     }
 }

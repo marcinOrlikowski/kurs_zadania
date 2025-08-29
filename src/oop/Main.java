@@ -60,5 +60,10 @@ public class Main {
         marcin.introduceYourself();
         mateusz.introduceYourself();
 
+        //task12
+        marcin.introduceYourself();
+        marcin.introduceYourself("Hello");
+        
+
     }
 }
