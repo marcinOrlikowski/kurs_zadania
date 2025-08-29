@@ -14,4 +14,14 @@ public class Product {
     public void showProduct() {
         System.out.println("Name: " + name + ", price: " + price);
     }
+
+    public void reducePrice(BigDecimal amount) {
+        this.price = this.price.subtract(amount);
+        System.out.println("New price of " + name.toUpperCase() + " " + price);
+    }
+
+    public void reducePrice(BigDecimal amount, String reason){
+        this.reducePrice(amount);
+        System.out.println("Price reduced due to: " + reason);
+    }
 }

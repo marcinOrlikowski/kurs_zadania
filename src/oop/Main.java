@@ -96,10 +96,14 @@ public class Main {
         System.out.println(marcin.compareAge(mateusz));
 
         //task 18
-        new Product("Mleko", new BigDecimal("2.99")).showProduct();
-        new Product("Czekolada", new BigDecimal("7.99")).showProduct();
-        new Product("Płatki", new BigDecimal("15.99")).showProduct();
+        new Product("Milk", new BigDecimal("2.99")).showProduct();
+        new Product("Chocolate", new BigDecimal("7.99")).showProduct();
+        new Product("Cereals", new BigDecimal("15.99")).showProduct();
 
+        //task 19
+        Product eggs = new Product("Eggs", new BigDecimal("10.99"));
+        eggs.reducePrice(new BigDecimal(1));
+        eggs.reducePrice(new BigDecimal(2),"High stock");
 
     }
 }
