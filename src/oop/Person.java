@@ -10,8 +10,7 @@ public class Person {
     }
 
     public Person(String name) {
-        this.name = name;
-        this.age = 0;
+        this(name, 0);
     }
 
     public void introduceYourself(){

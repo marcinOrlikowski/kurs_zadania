@@ -70,6 +70,9 @@ public class Main {
         oneParameter.introduceYourself();
         twoParameters.introduceYourself();
 
+        //task 14
+        Person oneParameterWithThis = new Person("oneParameterWithThis");
+        oneParameterWithThis.introduceYourself();
 
     }
 }
