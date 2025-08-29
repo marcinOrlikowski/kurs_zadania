@@ -37,5 +37,8 @@ public class Main {
         car3.introduceYourself();
         car4.introduceYourself();
         car5.introduceYourself();
+
+        //task 8
+        Car.classDescription();
     }
 }
