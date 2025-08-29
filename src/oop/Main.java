@@ -43,5 +43,15 @@ public class Main {
 
         //task 9
         System.out.println(Car.counter);
+
+        //task 10
+        Car[] cars = {
+                new Car("Audi", 2020),
+                new Car("BMW", 1998),
+                new Car("Renault", 2001)
+        };
+        for (Car car : cars) {
+            System.out.println(car);
+        }
     }
 }
