@@ -53,5 +53,12 @@ public class Main {
         for (Car car : cars) {
             System.out.println(car);
         }
+
+        //task 11
+        Person marcin = new Person("Marcin", 29);
+        Person mateusz = new Person("Mateusz", 26);
+        marcin.introduceYourself();
+        mateusz.introduceYourself();
+
     }
 }
