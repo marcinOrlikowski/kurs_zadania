@@ -103,7 +103,16 @@ public class Main {
         //task 19
         Product eggs = new Product("Eggs", new BigDecimal("10.99"));
         eggs.reducePrice(new BigDecimal(1));
-        eggs.reducePrice(new BigDecimal(2),"High stock");
+        eggs.reducePrice(new BigDecimal(2), "High stock");
+
+        //task 20
+        Shop biedronka = new Shop("Biedronka", new Product[]
+                {
+                        new Product("Milk", new BigDecimal("2.99")),
+                        new Product("Chocolate", new BigDecimal("7.99")),
+                        new Product("Cereals", new BigDecimal("15.99"))
+                });
+        biedronka.showProducts();
 
     }
 }
