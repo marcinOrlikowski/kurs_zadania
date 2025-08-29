@@ -74,5 +74,9 @@ public class Main {
         Person oneParameterWithThis = new Person("oneParameterWithThis");
         oneParameterWithThis.introduceYourself();
 
+        //task 15
+        System.out.println("Acces via class: " + Person.numberOfPeople);
+        System.out.println("Acces via object: " + marcin.numberOfPeople);
+
     }
 }

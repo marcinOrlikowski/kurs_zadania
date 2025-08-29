@@ -3,10 +3,12 @@ package oop;
 public class Person {
     private String name;
     private int age;
+    public static int numberOfPeople = 0;
 
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
+        numberOfPeople++;
     }
 
     public Person(String name) {
