@@ -23,4 +23,8 @@ public class Person {
         System.out.print(greeting);
         this.introduceYourself();
     }
+
+    public boolean isAdult(){
+        return this.age >= 18;
+    }
 }

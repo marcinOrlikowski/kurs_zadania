@@ -78,5 +78,17 @@ public class Main {
         System.out.println("Acces via class: " + Person.numberOfPeople);
         System.out.println("Acces via object: " + marcin.numberOfPeople);
 
+        //task 16
+        Person[] people = {
+                new Person("Jacek", 21),
+                new Person("Maciek", 16),
+                new Person("Martyna", 25)
+        };
+        for (Person person : people) {
+            if (person.isAdult()) {
+                person.introduceYourself();
+            }
+        }
+
     }
 }
