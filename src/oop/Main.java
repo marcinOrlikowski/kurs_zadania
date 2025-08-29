@@ -1,5 +1,7 @@
 package oop;
 
+import java.math.BigDecimal;
+
 public class Main {
     public static void main(String[] args) {
         //task 1
@@ -92,6 +94,12 @@ public class Main {
 
         //task 17
         System.out.println(marcin.compareAge(mateusz));
+
+        //task 18
+        new Product("Mleko", new BigDecimal("2.99")).showProduct();
+        new Product("Czekolada", new BigDecimal("7.99")).showProduct();
+        new Product("Płatki", new BigDecimal("15.99")).showProduct();
+
 
     }
 }
