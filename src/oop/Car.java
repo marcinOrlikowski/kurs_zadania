@@ -23,6 +23,10 @@ public class Car {
         this.brand = brand;
     }
 
+    public void introduceYourself(){
+        System.out.println("I am a car of brand " + this.brand.toUpperCase() + " from year " + this.yearOfProduction);
+    }
+
     @Override
     public String toString() {
         return "Brand: " + brand + ", year of production: " + yearOfProduction;

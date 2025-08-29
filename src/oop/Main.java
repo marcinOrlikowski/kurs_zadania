@@ -32,5 +32,10 @@ public class Main {
         //task 6
         Car car6 = new Car();
         System.out.println(car6);
+
+        //task 7
+        car3.introduceYourself();
+        car4.introduceYourself();
+        car5.introduceYourself();
     }
 }
