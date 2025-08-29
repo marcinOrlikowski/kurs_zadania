@@ -3,10 +3,12 @@ package oop;
 public class Car {
     String brand;
     int yearOfProduction;
+    static int counter = 0;
 
     public Car(String brand, int yearOfProduction) {
         this.brand = brand;
         this.yearOfProduction = yearOfProduction;
+        counter++;
     }
 
     public Car() {

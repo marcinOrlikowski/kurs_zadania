@@ -40,5 +40,8 @@ public class Main {
 
         //task 8
         Car.classDescription();
+
+        //task 9
+        System.out.println(Car.counter);
     }
 }
