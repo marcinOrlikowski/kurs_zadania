@@ -13,7 +13,6 @@ public class Main {
         System.out.println(car2);
 
         //task 3
-
         Car car3 = new Car("Opel", 2015);
         Car car4 = new Car("VW", 2015);
         Car car5 = new Car("Audi", 2015);
@@ -21,5 +20,8 @@ public class Main {
         System.out.println(car3);
         System.out.println(car4);
         System.out.println(car5);
+
+        //task 4
+        car5.showDifference();
     }
 }

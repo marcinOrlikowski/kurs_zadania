@@ -14,6 +14,12 @@ public class Car {
         this.yearOfProduction = yearOfProduction;
     }
 
+    public void showDifference(){
+        String brand = "local Brand";
+        System.out.println(brand);
+        System.out.println(this.brand);
+    }
+
     @Override
     public String toString() {
         return "Brand: " + brand + ", year of production: " + yearOfProduction;
