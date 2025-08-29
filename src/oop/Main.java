@@ -60,10 +60,16 @@ public class Main {
         marcin.introduceYourself();
         mateusz.introduceYourself();
 
-        //task12
+        //task 12
         marcin.introduceYourself();
         marcin.introduceYourself("Hello");
-        
+
+        //task 13
+        Person oneParameter = new Person("oneParameter");
+        Person twoParameters = new Person("TwoParameters", 40);
+        oneParameter.introduceYourself();
+        twoParameters.introduceYourself();
+
 
     }
 }
