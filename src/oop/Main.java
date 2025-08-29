@@ -28,5 +28,9 @@ public class Main {
         System.out.println("Before: " + car5);
         car5.changeBrand("Seat");
         System.out.println("After: " + car5);
+
+        //task 6
+        Car car6 = new Car();
+        System.out.println(car6);
     }
 }
