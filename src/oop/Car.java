@@ -20,6 +20,10 @@ public class Car {
         System.out.println(this.brand);
     }
 
+    public void changeBrand(String brand){
+        this.brand = brand;
+    }
+
     @Override
     public String toString() {
         return "Brand: " + brand + ", year of production: " + yearOfProduction;

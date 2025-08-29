@@ -23,5 +23,10 @@ public class Main {
 
         //task 4
         car5.showDifference();
+
+        //task 5
+        System.out.println("Before: " + car5);
+        car5.changeBrand("Seat");
+        System.out.println("After: " + car5);
     }
 }
