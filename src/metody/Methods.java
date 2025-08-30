@@ -71,7 +71,7 @@ public class Methods {
          * 3628800
          */
         //task 10
-        int[] array = {5,10,15};
+        int[] array = {5, 10, 15};
         System.out.println("Sum in array is: " + sumArray(array));
         /**
          * Output:
