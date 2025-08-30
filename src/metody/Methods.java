@@ -12,11 +12,17 @@ public class Methods {
          * Hello, Mateusz
          * Hello, Krystian
          */
+        //task 2
+        int result = mult(5, 10);
+        System.out.println(result);
     }
 
     private static void hello(String name) {
         System.out.println("Hello, " + name);
     }
 
+    private static int mult(int a, int b) {
+        return a * b;
+    }
 }
 
