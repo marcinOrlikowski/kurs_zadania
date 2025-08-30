@@ -15,6 +15,9 @@ public class Methods {
         //task 2
         int result = mult(5, 10);
         System.out.println(result);
+        //task 3
+        int result = max(9, 3);
+        System.out.println(result);
     }
 
     private static void hello(String name) {
@@ -23,6 +26,14 @@ public class Methods {
 
     private static int mult(int a, int b) {
         return a * b;
+    }
+
+    private static int max(int a, int b) {
+        if (a > b){
+            return a;
+        } else {
+            return b;
+        }
     }
 }
 
