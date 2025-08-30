@@ -18,6 +18,8 @@ public class Methods {
         //task 3
         int result3 = max(9, 3);
         System.out.println(result3);
+        //task 4
+        System.out.println(isEven(49) ? "Even" : "Not even");
     }
 
     private static void hello(String name) {
@@ -34,6 +36,10 @@ public class Methods {
         } else {
             return b;
         }
+    }
+
+    private static boolean isEven(int a) {
+        return a % 2 == 0;
     }
 }
 
