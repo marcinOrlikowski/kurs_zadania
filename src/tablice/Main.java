@@ -37,6 +37,8 @@ public class Main {
         matrixSum();
         //task 16
         matrixSumOfRows();
+        //task 17
+        matrixSumOfColumns();
     }
 
     private static void firstArray() {
@@ -218,5 +220,23 @@ public class Main {
             System.out.println("Sum in " + (i + 1) + " row is: " + sum);
         }
     }
+
+    private static void matrixSumOfColumns() {
+        int sum = 0;
+        int[][] matrix = {
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+
+        for (int j = 0; j < matrix[0].length; j++) {
+            sum = 0;
+            for (int[] ints : matrix) {
+                sum += ints[j];
+            }
+            System.out.println("Sum of " + (j + 1) + " column is: " + sum);
+        }
+    }
 }
+
+
 
