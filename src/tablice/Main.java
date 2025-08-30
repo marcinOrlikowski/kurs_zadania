@@ -265,7 +265,7 @@ public class Main {
         }
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] > thirdHighest && matrix[i][j] < secondHighest){
+                if (matrix[i][j] > thirdHighest && matrix[i][j] < secondHighest) {
                     thirdHighest = matrix[i][j];
                     coordinates[0] = i;
                     coordinates[1] = j;
@@ -284,7 +284,7 @@ public class Main {
                 {7, 8, 9}};
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] > highestValue){
+                if (matrix[i][j] > highestValue) {
                     highestValue = matrix[i][j];
                     coordinates[0] = i;
                     coordinates[1] = j;
