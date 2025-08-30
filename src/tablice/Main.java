@@ -33,6 +33,8 @@ public class Main {
         stringToCharArray();
         //task 14
         matrix();
+        //task 15
+        matrixSum();
     }
 
     private static void firstArray() {
@@ -181,5 +183,21 @@ public class Main {
         for (int[] ints : matrix) {
             System.out.println(Arrays.toString(ints));
         }
+    }
+
+    private static void matrixSum() {
+        int sum = 0;
+        int[][] matrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+
+        for (int[] ints : matrix) {
+            for (int i : ints) {
+                sum += i;
+            }
+        }
+        System.out.println("Sum of values in matrix is: " + sum);
     }
 }
