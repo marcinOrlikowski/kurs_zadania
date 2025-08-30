@@ -68,7 +68,7 @@ public class Methods {
     }
 
     private static String ageCategorization(int age) {
-        if (age < 0 || age > 150){
+        if (age < 0 || age > 150) {
             return "Wrong age";
         } else if (age >= 65) {
             return "Senior";
