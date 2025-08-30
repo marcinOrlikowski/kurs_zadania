@@ -16,7 +16,10 @@ public class Main {
         arithmeticAverage();
         //task 6
         highestValue();
+        //task 7
+        lowestValue();
     }
+
     private static void firstArray() {
         int[] array = {5, 10, 15, 20, 25};
         for (int i : array) {
@@ -40,6 +43,18 @@ public class Main {
             }
         }
         System.out.println("Highest value in array is: " + highest);
+    }
+
+    private static void lowestValue() {
+        int[] array = createAndFillArray();
+        int lowest = Integer.MAX_VALUE;
+        for (int i : array) {
+            if (i < lowest){
+                lowest = i;
+            }
+        }
+        System.out.println("Lowest value in array is: " + lowest);
+
     }
 
     private static int[] createAndFillArray() {
