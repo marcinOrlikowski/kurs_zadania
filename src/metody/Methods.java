@@ -50,6 +50,16 @@ public class Methods {
          * Value of 'x' changed locally in method: 10
          * Value of 'x' in was not changed and still is: 5
          */
+        //task 8
+        System.out.println(factorialIterative(4));
+        System.out.println(factorialIterative(5));
+        System.out.println(factorialIterative(10));
+        /**
+         * Output:
+         * Factorial of 4 is: 24
+         * Factorial of 5 is: 120
+         * Factorial of 10 is: 3628800
+         */
     }
 
     private static void hello(String name) {
@@ -93,6 +103,20 @@ public class Methods {
     private static void changeX(int x) {
         x = 10;
         System.out.println("Value of 'x' changed locally in method: " + x);
+    }
+
+    private static int factorialIterative(int n) {
+        int result = 1;
+        if (n > 0) {
+            for (int i = 1; i <= n; i++) {
+                result *= i;
+            }
+            System.out.print("Factorial of " + n + " is: ");
+            return result;
+        } else {
+            System.out.println("n has to be positive");
+            return 0;
+        }
     }
 }
 
