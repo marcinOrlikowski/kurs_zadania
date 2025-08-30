@@ -41,6 +41,15 @@ public class Methods {
          * 12
          * Teenager
          */
+        //task 7
+        int x = 5;
+        changeX(x);
+        System.out.println("Value of 'x' in was not changed and still is: " + x);
+        /**
+         * Output:
+         * Value of 'x' changed locally in method: 10
+         * Value of 'x' in was not changed and still is: 5
+         */
     }
 
     private static void hello(String name) {
@@ -79,6 +88,11 @@ public class Methods {
         } else {
             return "Child";
         }
+    }
+
+    private static void changeX(int x) {
+        x = 10;
+        System.out.println("Value of 'x' changed locally in method: " + x);
     }
 }
 
