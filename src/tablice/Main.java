@@ -10,6 +10,8 @@ public class Main {
         namesArray();
         //task 3
         createAndFillArray();
+        //task 4
+        sumArray();
     }
 
     private static void firstArray() {
@@ -44,4 +46,14 @@ public class Main {
             System.out.println(i);
         }
     }
+    private static void sumArray() {
+        int[] array = {5, 10, 15, 20, 25};
+        int sum = 0;
+        for (int i : array) {
+            sum += i;
+        }
+        System.out.println("Sum of values in array is: " + sum);
+    }
+
+
 }
