@@ -70,6 +70,13 @@ public class Methods {
          * 120
          * 3628800
          */
+        //task 10
+        int[] array = {5,10,15};
+        System.out.println("Sum in array is: " + sumArray(array));
+        /**
+         * Output:
+         * Sum in array is: 30
+         */
     }
 
     private static void hello(String name) {
@@ -135,6 +142,14 @@ public class Methods {
         } else {
             return n * factorialRecursive(n - 1);
         }
+    }
+
+    private static int sumArray(int[] array) {
+        int sum = 0;
+        for (int i : array) {
+            sum += i;
+        }
+        return sum;
     }
 }
 
