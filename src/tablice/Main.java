@@ -185,10 +185,7 @@ public class Main {
     }
 
     private static void matrix() {
-        int[][] matrix = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}};
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         for (int[] ints : matrix) {
             System.out.println(Arrays.toString(ints));
         }
@@ -196,11 +193,7 @@ public class Main {
 
     private static void matrixSum() {
         int sum = 0;
-        int[][] matrix = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}
-        };
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
         for (int[] ints : matrix) {
             for (int i : ints) {
@@ -212,10 +205,7 @@ public class Main {
 
     private static void matrixSumOfRows() {
         int sum = 0;
-        int[][] matrix = {
-                {4, 5, 6},
-                {7, 8, 9}
-        };
+        int[][] matrix = {{4, 5, 6}, {7, 8, 9}};
 
         for (int i = 0; i < matrix.length; i++) {
             sum = 0;
@@ -228,10 +218,7 @@ public class Main {
 
     private static void matrixSumOfColumns() {
         int sum = 0;
-        int[][] matrix = {
-                {4, 5, 6},
-                {7, 8, 9}
-        };
+        int[][] matrix = {{4, 5, 6}, {7, 8, 9}};
 
         for (int j = 0; j < matrix[0].length; j++) {
             sum = 0;
@@ -247,10 +234,7 @@ public class Main {
         int highestValue = Integer.MIN_VALUE;
         int secondHighest = Integer.MIN_VALUE;
         int thirdHighest = Integer.MIN_VALUE;
-        int[][] matrix = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}};
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         for (int[] ints : matrix) {
             for (int anInt : ints) {
                 if (anInt > highestValue) {
@@ -280,10 +264,7 @@ public class Main {
     private static void matrixMaxValue() {
         int[] coordinates = new int[2];
         int highestValue = Integer.MIN_VALUE;
-        int[][] matrix = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}};
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 if (matrix[i][j] > highestValue) {
