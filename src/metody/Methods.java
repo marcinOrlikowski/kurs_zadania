@@ -107,6 +107,8 @@ public class Methods {
         System.out.println(Arrays.toString(mergedArray));
         //task 15
         System.out.println(sumDigitsIterative(12345));
+        //task 16
+        System.out.println(sumDigitsRecursive(12345));
     }
 
     private static void hello(String name) {
@@ -236,6 +238,14 @@ public class Methods {
             n /= 10;
         }
         return sum;
+    }
+
+    private static int sumDigitsRecursive(int n) {
+        if (n == 0) {
+            return 0;
+        } else {
+            return (n % 10) + sumDigitsRecursive(n / 10);
+        }
     }
 }
 
