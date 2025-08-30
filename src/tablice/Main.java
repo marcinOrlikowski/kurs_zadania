@@ -18,6 +18,8 @@ public class Main {
         highestValue();
         //task 7
         lowestValue();
+        //task 8
+        valueCounter();
     }
 
     private static void firstArray() {
@@ -54,7 +56,18 @@ public class Main {
             }
         }
         System.out.println("Lowest value in array is: " + lowest);
+    }
 
+    private static void valueCounter() {
+        Scanner sc = new Scanner(System.in);
+        int[] array = createAndFillArray();
+        int lowest = Integer.MAX_VALUE;
+        for (int i : array) {
+            if (i < lowest){
+                lowest = i;
+            }
+        }
+        System.out.println("Lowest value in array is: " + lowest);
     }
 
     private static int[] createAndFillArray() {
@@ -67,7 +80,6 @@ public class Main {
             System.out.println("Enter " + (i + 1 + " value"));
             array[i] = sc.nextInt();
         }
-
         return array;
     }
 
