@@ -100,6 +100,11 @@ public class Methods {
          * Before reversing: [5, 10, 15, 20, 25]
          * After reversing: [25, 20, 15, 10, 5]
          */
+        //task 14
+        int[] array1 = {5, 15, 30};
+        int[] array2 = {10, 20, 25};
+        int[] mergedArray = mergeArray(array1, array2);
+        System.out.println(Arrays.toString(mergedArray));
     }
 
     private static void hello(String name) {
@@ -204,6 +209,22 @@ public class Methods {
             reversed[i] = array[array.length - i - 1];
         }
         return reversed;
+    }
+
+    private static int[] mergeArray(int[] array1, int[] array2) {
+        int size = array1.length + array2.length;
+        int counter = 0;
+        int[] result = new int[size];
+        for (int i : array1) {
+            result[counter] = i;
+            counter++;
+        }
+        for (int j : array2) {
+            result[counter] = j;
+            counter++;
+        }
+        Arrays.sort(result);
+        return result;
     }
 }
 
