@@ -14,25 +14,35 @@ public class Main {
         sumArray();
         //task 5
         arithmeticAverage();
+        //task 6
+        highestValue();
     }
-
     private static void firstArray() {
         int[] array = {5, 10, 15, 20, 25};
         for (int i : array) {
             System.out.println(i);
         }
-        }
+    }
 
     private static void namesArray() {
         String[] names = {"Marcin", "Mateusz", "Krystian"};
         for (String name : names) {
             System.out.println("Cześć, " + name + "!");
         }
-
     }
 
+    private static void highestValue() {
+        int[] array = createAndFillArray();
+        int highest = 0;
+        for (int i : array) {
+            if (i > highest){
+                highest = i;
+            }
+        }
+        System.out.println("Highest value in array is: " + highest);
+    }
 
-    private static void createAndFillArray() {
+    private static int[] createAndFillArray() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter size of array");
         int size = sc.nextInt();
@@ -43,12 +53,9 @@ public class Main {
             array[i] = sc.nextInt();
         }
 
-        System.out.println("Values in array:");
-
-        for (int i : array) {
-            System.out.println(i);
-        }
+        return array;
     }
+
     private static void sumArray() {
         int[] array = {5, 10, 15, 20, 25};
         int sum = 0;
@@ -57,6 +64,7 @@ public class Main {
         }
         System.out.println("Sum of values in array is: " + sum);
     }
+
     private static void arithmeticAverage() {
         int[] array = {5, 10, 15, 20, 25};
         int sum = 0;
@@ -65,9 +73,5 @@ public class Main {
         }
         int average = sum / array.length;
         System.out.printf("Average: %d", average);
-
     }
 }
-
-
-
