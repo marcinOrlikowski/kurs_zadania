@@ -51,7 +51,7 @@ public class Main {
         int[] array = createAndFillArray();
         int highest = 0;
         for (int i : array) {
-            if (i > highest){
+            if (i > highest) {
                 highest = i;
             }
         }
@@ -62,7 +62,7 @@ public class Main {
         int[] array = createAndFillArray();
         int lowest = Integer.MAX_VALUE;
         for (int i : array) {
-            if (i < lowest){
+            if (i < lowest) {
                 lowest = i;
             }
         }
@@ -76,7 +76,7 @@ public class Main {
         int searched = sc.nextInt();
         int counter = 0;
         for (int i : array) {
-            if (i == searched){
+            if (i == searched) {
                 counter++;
             }
         }
@@ -90,7 +90,7 @@ public class Main {
         int searched = sc.nextInt();
         boolean found = false;
         for (int i : array) {
-            if (i == searched){
+            if (i == searched) {
                 found = true;
             }
         }
@@ -153,8 +153,8 @@ public class Main {
     }
 
     private static void sumOfTwoArrays() {
-        int[] array1 = {5,10,15,20,25};
-        int[] array2 = {5,10,15,20,25};
+        int[] array1 = {5, 10, 15, 20, 25};
+        int[] array2 = {5, 10, 15, 20, 25};
         int[] sum = new int[array1.length];
         for (int i = 0; i < sum.length; i++) {
             sum[i] = array1[i] + array2[i];
