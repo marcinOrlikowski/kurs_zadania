@@ -293,7 +293,7 @@ public class Main {
         switchDiagonalsInMatrix(matrix);
         System.out.println("After switching diagonals:");
         printMatrix(matrix);
-        }
+    }
 
     private static int[][] createAndFillMatrix() {
         int[][] matrix = new int[10][10];
@@ -322,7 +322,7 @@ public class Main {
     private static void switchDiagonalsInMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                if (i == j){
+                if (i == j) {
                     int temp = matrix[i][j];
                     matrix[i][j] = matrix[i][matrix[i].length - j - 1];
                     matrix[i][matrix[j].length - j - 1] = temp;
