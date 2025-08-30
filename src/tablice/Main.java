@@ -29,6 +29,8 @@ public class Main {
         switchFirstWithLastInArray();
         //task 12
         sumOfTwoArrays();
+        //task 13
+        stringToCharArray();
     }
 
     private static void firstArray() {
@@ -159,5 +161,13 @@ public class Main {
         }
         System.out.println("Result:");
         System.out.println(Arrays.toString(sum));
+    }
+
+    private static void stringToCharArray() {
+        String text = "Ala ma kota";
+        char[] charArray = text.toCharArray();
+        for (char c : charArray) {
+            System.out.println(c);
+        }
     }
 }
