@@ -1,5 +1,7 @@
 package metody;
 
+import java.util.Scanner;
+
 public class Methods {
     public static void main(String[] args) {
         //task 1
@@ -27,6 +29,18 @@ public class Methods {
          * Output:
          * Average: 4,00
          */
+        //task 6
+        System.out.println("Enter age:");
+        Scanner sc = new Scanner(System.in);
+        int age = sc.nextInt();
+        sc.close();
+        System.out.println(ageCategorization(age));
+        /**
+         * Outout:
+         * Enter age:
+         * 12
+         * Teenager
+         */
     }
 
     private static void hello(String name) {
@@ -51,6 +65,20 @@ public class Methods {
 
     private static double average(double a, double b, double c) {
         return (a + b + c) / 3;
+    }
+
+    private static String ageCategorization(int age) {
+        if (age < 0 || age > 150){
+            return "Wrong age";
+        } else if (age >= 65) {
+            return "Senior";
+        } else if (age >= 18) {
+            return "Adult";
+        } else if (age >= 12) {
+            return "Teenager";
+        } else {
+            return "Child";
+        }
     }
 }
 
