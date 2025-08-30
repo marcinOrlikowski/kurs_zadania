@@ -101,9 +101,9 @@ public class Methods {
          * After reversing: [25, 20, 15, 10, 5]
          */
         //task 14
-        int[] array1 = {5, 15, 30};
-        int[] array2 = {10, 20, 25};
-        int[] mergedArray = mergeArray(array1, array2);
+        int[] array3 = {5, 15, 30};
+        int[] array4 = {10, 20, 25};
+        int[] mergedArray = mergeArray(array3, array4);
         System.out.println(Arrays.toString(mergedArray));
     }
 
