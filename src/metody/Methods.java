@@ -109,6 +109,8 @@ public class Methods {
         System.out.println(sumDigitsIterative(12345));
         //task 16
         System.out.println(sumDigitsRecursive(12345));
+        //task 17
+        System.out.println(gcdIterative(21, 49));
     }
 
     private static void hello(String name) {
@@ -246,6 +248,16 @@ public class Methods {
         } else {
             return (n % 10) + sumDigitsRecursive(n / 10);
         }
+    }
+
+    private static int gcdIterative(int a, int b) {
+        while (a != b) {
+            if (a > b){
+                a -= b;
+            } else
+                b -= a;
+        }
+        return a;
     }
 }
 
