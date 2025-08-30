@@ -105,6 +105,8 @@ public class Methods {
         int[] array4 = {10, 20, 25};
         int[] mergedArray = mergeArray(array3, array4);
         System.out.println(Arrays.toString(mergedArray));
+        //task 15
+        System.out.println(sumDigitsIterative(12345));
     }
 
     private static void hello(String name) {
@@ -225,6 +227,15 @@ public class Methods {
         }
         Arrays.sort(result);
         return result;
+    }
+
+    private static int sumDigitsIterative(int n) {
+        int sum = 0;
+        while (n != 0){
+            sum += n % 10;
+            n /= 10;
+        }
+        return sum;
     }
 }
 
