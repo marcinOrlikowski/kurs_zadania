@@ -91,7 +91,7 @@ public class Methods {
         //task 12
         System.out.println(isPrime(21) ? "Prime" : "Not prime");
         //task 13
-        int[] array2 = {5,10,15,20,25};
+        int[] array2 = {5, 10, 15, 20, 25};
         System.out.println("Before reversing: " + Arrays.toString(array));
         int[] reversed = reverseArray(array);
         System.out.println("After reversing: " + Arrays.toString(reversed));
