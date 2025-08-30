@@ -47,11 +47,7 @@ public class Main {
         System.out.println(Car.counter);
 
         //task 10
-        Car[] cars = {
-                new Car("Audi", 2020),
-                new Car("BMW", 1998),
-                new Car("Renault", 2001)
-        };
+        Car[] cars = {new Car("Audi", 2020), new Car("BMW", 1998), new Car("Renault", 2001)};
         for (Car car : cars) {
             System.out.println(car);
         }
@@ -81,11 +77,7 @@ public class Main {
         System.out.println("Acces via object: " + marcin.numberOfPeople);
 
         //task 16
-        Person[] people = {
-                new Person("Jacek", 21),
-                new Person("Maciek", 16),
-                new Person("Martyna", 25)
-        };
+        Person[] people = {new Person("Jacek", 21), new Person("Maciek", 16), new Person("Martyna", 25)};
         for (Person person : people) {
             if (person.isAdult()) {
                 person.introduceYourself();
@@ -106,12 +98,7 @@ public class Main {
         eggs.reducePrice(new BigDecimal(2), "High stock");
 
         //task 20
-        Shop biedronka = new Shop("Biedronka", new Product[]
-                {
-                        new Product("Milk", new BigDecimal("2.99")),
-                        new Product("Chocolate", new BigDecimal("7.99")),
-                        new Product("Cereals", new BigDecimal("15.99"))
-                });
+        Shop biedronka = new Shop("Biedronka", new Product[]{new Product("Milk", new BigDecimal("2.99")), new Product("Chocolate", new BigDecimal("7.99")), new Product("Cereals", new BigDecimal("15.99"))});
         biedronka.showProducts();
 
     }
