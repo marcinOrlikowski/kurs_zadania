@@ -9,10 +9,10 @@ public class Methods {
     private static int gcdRecursive(int a, int b) {
         if (a == b) {
             return a;
-        } else if (a > b){
-            return gcdRecursive(a-b,b);
+        } else if (a > b) {
+            return gcdRecursive(a - b, b);
         } else {
-            return gcdRecursive(a,b-a);
+            return gcdRecursive(a, b - a);
         }
     }
 
