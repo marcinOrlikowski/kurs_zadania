@@ -1,5 +1,6 @@
 package metody;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Methods {
@@ -89,6 +90,16 @@ public class Methods {
          */
         //task 12
         System.out.println(isPrime(21) ? "Prime" : "Not prime");
+        //task 13
+        int[] array2 = {5,10,15,20,25};
+        System.out.println("Before reversing: " + Arrays.toString(array));
+        int[] reversed = reverseArray(array);
+        System.out.println("After reversing: " + Arrays.toString(reversed));
+        /**
+         * Output:
+         * Before reversing: [5, 10, 15, 20, 25]
+         * After reversing: [25, 20, 15, 10, 5]
+         */
     }
 
     private static void hello(String name) {
@@ -185,6 +196,14 @@ public class Methods {
             }
         }
         return !dividedByMoreThanTwoFactors;
+    }
+
+    private static int[] reverseArray(int[] array) {
+        int[] reversed = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            reversed[i] = array[array.length - i - 1];
+        }
+        return reversed;
     }
 }
 
