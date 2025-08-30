@@ -60,6 +60,16 @@ public class Methods {
          * Factorial of 5 is: 120
          * Factorial of 10 is: 3628800
          */
+        //task 9
+        System.out.println(factorialRecursive(4));
+        System.out.println(factorialRecursive(5));
+        System.out.println(factorialRecursive(10));
+        /**
+         * Output:
+         * 24
+         * 120
+         * 3628800
+         */
     }
 
     private static void hello(String name) {
@@ -116,6 +126,14 @@ public class Methods {
         } else {
             System.out.println("n has to be positive");
             return 0;
+        }
+    }
+
+    private static int factorialRecursive(int n) {
+        if (n == 1 || n == 0) {
+            return 1;
+        } else {
+            return n * factorialRecursive(n - 1);
         }
     }
 }
