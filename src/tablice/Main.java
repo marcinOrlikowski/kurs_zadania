@@ -12,6 +12,8 @@ public class Main {
         createAndFillArray();
         //task 4
         sumArray();
+        //task 5
+        arithmeticAverage();
     }
 
     private static void firstArray() {
@@ -28,6 +30,7 @@ public class Main {
         }
 
     }
+
 
     private static void createAndFillArray() {
         Scanner sc = new Scanner(System.in);
@@ -54,6 +57,17 @@ public class Main {
         }
         System.out.println("Sum of values in array is: " + sum);
     }
+    private static void arithmeticAverage() {
+        int[] array = {5, 10, 15, 20, 25};
+        int sum = 0;
+        for (int i : array) {
+            sum += i;
+        }
+        int average = sum / array.length;
+        System.out.printf("Average: %d", average);
 
-
+    }
 }
+
+
+
