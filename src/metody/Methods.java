@@ -87,6 +87,8 @@ public class Methods {
          * Max value in array is: 30
          * Max value in array is: 999
          */
+        //task 12
+        System.out.println(isPrime(21) ? "Prime" : "Not prime");
     }
 
     private static void hello(String name) {
@@ -170,6 +172,19 @@ public class Methods {
             }
         }
         return max;
+    }
+
+    private static boolean isPrime(int n) {
+        boolean dividedByMoreThanTwoFactors = false;
+        if (n <= 1){
+            return false;
+        }
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0){
+                dividedByMoreThanTwoFactors = true;
+            }
+        }
+        return !dividedByMoreThanTwoFactors;
     }
 }
 
