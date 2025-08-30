@@ -13,11 +13,11 @@ public class Methods {
          * Hello, Krystian
          */
         //task 2
-        int result = mult(5, 10);
-        System.out.println(result);
+        int result2 = mult(5, 10);
+        System.out.println(result2);
         //task 3
-        int result = max(9, 3);
-        System.out.println(result);
+        int result3 = max(9, 3);
+        System.out.println(result3);
     }
 
     private static void hello(String name) {
@@ -29,7 +29,7 @@ public class Methods {
     }
 
     private static int max(int a, int b) {
-        if (a > b){
+        if (a > b) {
             return a;
         } else {
             return b;
