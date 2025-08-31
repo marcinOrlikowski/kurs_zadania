@@ -15,5 +15,16 @@ public class Main {
         DayOfWeek monday = DayOfWeek.MONDAY;
         DayOfWeek tuesday = DayOfWeek.TUESDAY;
         System.out.println(monday == tuesday);
+
+        System.out.println("Task 4");
+        enumInSwitch();
+    }
+
+    private static void enumInSwitch() {
+        switch (DayOfWeek.TUESDAY){
+            case MONDAY, TUESDAY -> System.out.println("Beginning of the week");
+            case WEDNESDAY, THURSDAY, FRIDAY -> System.out.println("Middle of the week");
+            case SATURDAY, SUNDAY -> System.out.println("Weekend");
+        }
     }
 }
