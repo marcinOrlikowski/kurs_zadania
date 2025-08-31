@@ -27,6 +27,17 @@ public class Main {
 
         System.out.println("Task 7");
         System.out.println(Month.AUGUST);
+
+        System.out.println("Task 8");
+        enumOrdinal();
+    }
+
+    private static void enumOrdinal() {
+        for (Month month : Month.values()) {
+            System.out.println(month + " " + month.ordinal());
+        }
+        int i = Month.JANUARY.compareTo(Month.FEBRUARY);
+        System.out.println(i);
     }
 
     private static void enumWithFieldAndConstructor() {
