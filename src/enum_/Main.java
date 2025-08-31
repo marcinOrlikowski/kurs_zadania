@@ -21,6 +21,15 @@ public class Main {
 
         System.out.println("Task 5");
         System.out.println(DayOfWeek.SATURDAY.isWeekend());
+
+        System.out.println("Task 6");
+        enumWithFieldAndConstructor();
+    }
+
+    private static void enumWithFieldAndConstructor() {
+        for (Month month : Month.values()) {
+            System.out.println(month + " " + month.getDays());
+        }
     }
 
     private static void enumInSwitch() {
