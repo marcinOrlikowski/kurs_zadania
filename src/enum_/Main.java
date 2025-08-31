@@ -30,6 +30,17 @@ public class Main {
 
         System.out.println("Task 8");
         enumOrdinal();
+
+        System.out.println("Task 9");
+        holidayMonths();
+    }
+
+    private static void holidayMonths() {
+        for (Month month : Month.values()) {
+            if (month.isHolidaySeason()){
+                System.out.println(month);
+            }
+        }
     }
 
     private static void enumOrdinal() {
