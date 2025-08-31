@@ -24,6 +24,9 @@ public class Main {
 
         System.out.println("Task 6");
         enumWithFieldAndConstructor();
+
+        System.out.println("Task 7");
+        System.out.println(Month.AUGUST);
     }
 
     private static void enumWithFieldAndConstructor() {
