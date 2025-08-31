@@ -18,6 +18,9 @@ public class Main {
 
         System.out.println("Task 4");
         enumInSwitch();
+
+        System.out.println("Task 5");
+        System.out.println(DayOfWeek.SATURDAY.isWeekend());
     }
 
     private static void enumInSwitch() {
