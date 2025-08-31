@@ -33,6 +33,10 @@ public class Main {
 
         System.out.println("Task 9");
         holidayMonths();
+
+        System.out.println("Task 10");
+        new Person("Marcin", DayOfWeek.SATURDAY).showDayOff();
+        new Person("Maciek", DayOfWeek.SUNDAY).showDayOff();
     }
 
     private static void holidayMonths() {
