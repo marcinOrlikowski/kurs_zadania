@@ -37,6 +37,18 @@ public class Main {
         System.out.println("Task 10");
         new Person("Marcin", DayOfWeek.SATURDAY).showDayOff();
         new Person("Maciek", DayOfWeek.SUNDAY).showDayOff();
+
+        System.out.println("Task 11");
+        enumInArray();
+    }
+
+    private static void enumInArray() {
+        Month[] months = {Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL};
+        int sumOfDays = 0;
+        for (Month month : months) {
+            sumOfDays += month.getDays();
+        }
+        System.out.println("Sum of days is: " + sumOfDays);
     }
 
     private static void holidayMonths() {
