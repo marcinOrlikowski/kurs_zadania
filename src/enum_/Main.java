@@ -40,6 +40,11 @@ public class Main {
 
         System.out.println("Task 11");
         enumInArray();
+
+        System.out.println("Task 12");
+        for (Currency currency : Currency.values()) {
+            System.out.println(currency + " " + currency.getSymbol());
+        }
     }
 
     private static void enumInArray() {
