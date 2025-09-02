@@ -68,6 +68,18 @@ public class Main {
 
         System.out.println("Task 19");
         Calculations();
+
+        System.out.println("Task 20");
+        enumComparing();
+    }
+
+    private static void enumComparing() {
+        DayOfWeek monday = DayOfWeek.MONDAY;
+        DayOfWeek monday2 = DayOfWeek.MONDAY;
+        System.out.println("Comparing using '==' operator");
+        System.out.println(monday == monday2);
+        System.out.println("Comparing using equals method");
+        System.out.println(monday.equals(monday2));
     }
 
     private static void Calculations() {
