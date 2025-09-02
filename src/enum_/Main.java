@@ -65,6 +65,16 @@ public class Main {
 
         System.out.println("Task 18");
         arrayOfProducts();
+
+        System.out.println("Task 19");
+        Calculations();
+    }
+
+    private static void Calculations() {
+        System.out.println("a + b = " + Calculation.ADD.calculate(5, 5));
+        System.out.println("a - b = " + Calculation.SUBTRACT.calculate(5, 5));
+        System.out.println("a * b = " + Calculation.MULTIPLY.calculate(5, 5));
+        System.out.println("a / b = " + Calculation.DIVIDE.calculate(5, 5));
     }
 
     private static void arrayOfProducts() {
