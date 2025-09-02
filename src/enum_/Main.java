@@ -62,6 +62,20 @@ public class Main {
 
         System.out.println("Task 17");
         menu();
+
+        System.out.println("Task 18");
+        arrayOfProducts();
+    }
+
+    private static void arrayOfProducts() {
+        Product[] products = {
+                new Product("Apple", Category.FOOD),
+                new Product("t-shirt", Category.CLOTHING),
+                new Product("laptop", Category.ELECTRONICS)
+        };
+        for (Product product : products) {
+            System.out.println(product);
+        }
     }
 
     private static void menu() {
