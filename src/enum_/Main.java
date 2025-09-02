@@ -51,6 +51,15 @@ public class Main {
 
         System.out.println("Task 14");
         OrderStatusChecker();
+
+        System.out.println("Task 15");
+        GetPlanetsDensity();
+    }
+
+    private static void GetPlanetsDensity() {
+        for (Planet planet : Planet.values()) {
+            System.out.printf("%s : %f \n", planet, planet.getDensity());
+        }
     }
 
     private static void OrderStatusChecker() {
