@@ -48,6 +48,17 @@ public class Main {
 
         System.out.println("Task 13");
         Calculate();
+
+        System.out.println("Task 14");
+        OrderStatusChecker();
+    }
+
+    private static void OrderStatusChecker() {
+        System.out.println(OrderStatus.NEW + " is active? : " + OrderStatus.NEW.isActive());
+        System.out.println(OrderStatus.PROCESSING + " is active? : " + OrderStatus.PROCESSING.isActive());
+        System.out.println(OrderStatus.SHIPPED + " is active? : " + OrderStatus.SHIPPED.isActive());
+        System.out.println(OrderStatus.DELIVERED + " is active? : " + OrderStatus.DELIVERED.isActive());
+        System.out.println(OrderStatus.CANCELED + " is active? : " + OrderStatus.CANCELED.isActive());
     }
 
     private static void Calculate() {
