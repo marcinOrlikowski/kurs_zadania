@@ -45,6 +45,16 @@ public class Main {
         for (Currency currency : Currency.values()) {
             System.out.println(currency + " " + currency.getSymbol());
         }
+
+        System.out.println("Task 13");
+        Calculate();
+    }
+
+    private static void Calculate() {
+        Operation.ADD.calculate(5, 5);
+        Operation.SUBTRACT.calculate(5, 5);
+        Operation.MULTIPLY.calculate(5, 5);
+        Operation.DIVIDE.calculate(5, 5);
     }
 
     private static void enumInArray() {
@@ -58,7 +68,7 @@ public class Main {
 
     private static void holidayMonths() {
         for (Month month : Month.values()) {
-            if (month.isHolidaySeason()){
+            if (month.isHolidaySeason()) {
                 System.out.println(month);
             }
         }
@@ -79,7 +89,7 @@ public class Main {
     }
 
     private static void enumInSwitch() {
-        switch (DayOfWeek.TUESDAY){
+        switch (DayOfWeek.TUESDAY) {
             case MONDAY, TUESDAY -> System.out.println("Beginning of the week");
             case WEDNESDAY, THURSDAY, FRIDAY -> System.out.println("Middle of the week");
             case SATURDAY, SUNDAY -> System.out.println("Weekend");
