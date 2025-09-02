@@ -54,6 +54,9 @@ public class Main {
 
         System.out.println("Task 15");
         GetPlanetsDensity();
+
+        System.out.println("Task 16");
+        Logger.INSTANCE.log("test");
     }
 
     private static void GetPlanetsDensity() {
