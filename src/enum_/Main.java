@@ -1,5 +1,7 @@
 package enum_;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Task 1");
@@ -57,6 +59,27 @@ public class Main {
 
         System.out.println("Task 16");
         Logger.INSTANCE.log("test");
+
+        System.out.println("Task 17");
+        menu();
+    }
+
+    private static void menu() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose option: ");
+        System.out.println("'START', 'STOP', 'EXIT'");
+        MenuOption userInput = MenuOption.valueOf(sc.nextLine().toUpperCase().trim());
+        switch (userInput) {
+            case START -> {
+                System.out.println("STARTING...");
+            }
+            case STOP -> {
+                System.out.println("STOPPING...");
+            }
+            case EXIT -> {
+                System.out.println("GOODBYE");
+            }
+        }
     }
 
     private static void GetPlanetsDensity() {
