@@ -13,6 +13,16 @@ public class Main {
 
         System.out.println("TASK - 3");
         roundingPrices();
+
+        System.out.println("TASK - 4");
+        calculatingDiscount();
+    }
+
+    private static void calculatingDiscount() {
+        BigDecimal price = BigDecimal.valueOf(3.49);
+        BigDecimal discountPercentage = BigDecimal.valueOf(0.15);
+        BigDecimal afterDiscount = price.subtract(price.multiply(discountPercentage)).setScale(2, RoundingMode.HALF_UP);
+        System.out.println(afterDiscount);
     }
 
     private static void roundingPrices() {
