@@ -36,6 +36,19 @@ public class Main {
 
         System.out.println("TASK - 10");
         precisionDifference();
+
+        System.out.println("TASK - 11");
+        stringBasicOperations();
+    }
+
+    private static void stringBasicOperations() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter text:");
+        String input = sc.nextLine();
+        System.out.println("Lenght: " + input.length());
+        System.out.println("Uppercase version: " + input.toUpperCase());
+        System.out.println("Lowercase version: " + input.toUpperCase());
+        System.out.println("Reversed version: " + new StringBuilder(input).reverse());
     }
 
     private static void precisionDifference() {
