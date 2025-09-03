@@ -53,7 +53,16 @@ public class Main {
         stringSplitting();
 
         System.out.println("TASK - 16");
-        stringPrefixAndSuffix();
+//        stringPrefixAndSuffix();
+
+        System.out.println("TASK - 17");
+        combineStringAndBigDecimal();
+    }
+
+    private static void combineStringAndBigDecimal() {
+        String name = "laptop";
+        BigDecimal price = BigDecimal.valueOf(3999.99);
+        System.out.printf("Product: %s, price: %.2f PLN", name, price);
     }
 
     private static void stringPrefixAndSuffix() {
