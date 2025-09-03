@@ -1,7 +1,9 @@
 package BigDecimalAndString;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,6 +27,25 @@ public class Main {
 
         System.out.println("TASK - 7");
         shoppingCartSum();
+
+        System.out.println("TASK - 8");
+        averagePrice();
+    }
+
+    private static void averagePrice() {
+        BigDecimal sum = BigDecimal.ZERO;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("How many prices do you want to add?");
+        int numberOfProducts = sc.nextInt();
+        sc.nextLine();
+        BigDecimal[] products = new BigDecimal[numberOfProducts];
+        for (int i = 0; i < products.length; i++) {
+            System.out.println("Enter price of " + (i + 1) + " product");
+            products[i] = new BigDecimal(sc.nextLine());
+            sum = sum.add(products[i]);
+        }
+        BigDecimal averagePrice = sum.divide(BigDecimal.valueOf(numberOfProducts), 2, RoundingMode.HALF_UP);
+        System.out.println("Average price: " + averagePrice);
     }
 
     private static void shoppingCartSum() {
