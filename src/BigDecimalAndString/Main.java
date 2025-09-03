@@ -42,6 +42,16 @@ public class Main {
 
         System.out.println("TASK - 12");
         stringSearching();
+
+        System.out.println("TASK - 13");
+        stringReplaceFragment();
+    }
+
+    private static void stringReplaceFragment() {
+        String sentence = "Ala ma kota, kot ma Ale";
+        String result = sentence.replaceAll(" ", "_");
+        System.out.println(result);
+        System.out.println(result.replaceAll(",", ""));
     }
 
     private static void stringSearching() {
