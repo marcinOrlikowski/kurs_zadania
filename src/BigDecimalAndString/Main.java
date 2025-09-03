@@ -23,7 +23,7 @@ public class Main {
         System.out.println("TASK - 6");
         comparingPrices();
 
-        System.out.println("TASK - 6");
+        System.out.println("TASK - 7");
         shoppingCartSum();
     }
 
