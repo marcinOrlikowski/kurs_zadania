@@ -19,6 +19,22 @@ public class Main {
 
         System.out.println("TASK - 5");
         vatTax();
+
+        System.out.println("TASK - 6");
+        comparingPrices();
+    }
+
+    private static void comparingPrices() {
+        BigDecimal price1 = BigDecimal.valueOf(9.99);
+        BigDecimal price2 = BigDecimal.valueOf(10);
+        int i = price1.compareTo(price2);
+        if (i < 0) {
+            System.out.println("Price 2 is Bigger");
+        } else if (i == 0) {
+            System.out.println("Prices are equal");
+        } else {
+            System.out.println("Price 1 is Bigger");
+        }
     }
 
     private static void vatTax() {
