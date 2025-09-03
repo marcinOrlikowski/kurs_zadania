@@ -16,6 +16,16 @@ public class Main {
 
         System.out.println("TASK - 4");
         calculatingDiscount();
+
+        System.out.println("TASK - 5");
+        vatTax();
+    }
+
+    private static void vatTax() {
+        BigDecimal netPrice = BigDecimal.valueOf(9.99);
+        BigDecimal vat = BigDecimal.valueOf(0.23);
+        BigDecimal grossPrice = netPrice.multiply(vat).add(netPrice).setScale(2, RoundingMode.HALF_UP);
+        System.out.println("Gross price: " + grossPrice);
     }
 
     private static void calculatingDiscount() {
