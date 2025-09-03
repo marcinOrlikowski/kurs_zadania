@@ -10,6 +10,16 @@ public class Main {
 
         System.out.println("TASK - 2");
         bigDecimalFromString();
+
+        System.out.println("TASK - 3");
+        roundingPrices();
+    }
+
+    private static void roundingPrices() {
+        BigDecimal bigDecimal = BigDecimal.valueOf(10.56789);
+        BigDecimal rounded = bigDecimal.setScale(2, RoundingMode.HALF_UP);
+        System.out.println("Before: " + bigDecimal);
+        System.out.println("After: " + rounded);
     }
 
     private static void bigDecimalFromString() {
