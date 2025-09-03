@@ -22,6 +22,22 @@ public class Main {
 
         System.out.println("TASK - 6");
         comparingPrices();
+
+        System.out.println("TASK - 6");
+        shoppingCartSum();
+    }
+
+    private static void shoppingCartSum() {
+        BigDecimal sum = BigDecimal.ZERO;
+        BigDecimal[] array = {
+                BigDecimal.valueOf(7.99),
+                BigDecimal.valueOf(9.99),
+                BigDecimal.valueOf(14.99)
+        };
+        for (BigDecimal bigDecimal : array) {
+            sum = sum.add(bigDecimal);
+        }
+        System.out.println("Sum of prices: " + sum);
     }
 
     private static void comparingPrices() {
