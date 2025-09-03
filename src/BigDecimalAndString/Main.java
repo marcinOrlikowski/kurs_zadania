@@ -3,6 +3,8 @@ package BigDecimalAndString;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -57,12 +59,26 @@ public class Main {
 
         System.out.println("TASK - 17");
         combineStringAndBigDecimal();
+
+        System.out.println("TASK - 18");
+        formattingPrices();
+    }
+
+    private static void formattingPrices() {
+        List<BigDecimal> bigDecimals = List.of(
+                new BigDecimal("0"),
+                new BigDecimal("9.99"),
+                new BigDecimal("19.99"),
+                new BigDecimal("99.99")
+        );
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        bigDecimals.forEach(s -> System.out.println(df.format(s) + " zł"));
     }
 
     private static void combineStringAndBigDecimal() {
         String name = "laptop";
         BigDecimal price = BigDecimal.valueOf(3999.99);
-        System.out.printf("Product: %s, price: %.2f PLN", name, price);
+        System.out.printf("Product: %s, price: %.2f PLN \n", name, price);
     }
 
     private static void stringPrefixAndSuffix() {
