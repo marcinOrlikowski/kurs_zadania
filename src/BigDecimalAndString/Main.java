@@ -45,6 +45,16 @@ public class Main {
 
         System.out.println("TASK - 13");
         stringReplaceFragment();
+
+        System.out.println("TASK - 14");
+        stringComparison();
+    }
+
+    private static void stringComparison() {
+        String sentence1 = "Ala ma kota";
+        String sentence2 = "ala ma kota";
+        System.out.println("equals: " + sentence1.equals(sentence2));
+        System.out.println("equalsIgnoreCase: " + sentence1.equalsIgnoreCase(sentence2));
     }
 
     private static void stringReplaceFragment() {
