@@ -62,6 +62,18 @@ public class Main {
 
         System.out.println("TASK - 18");
         formattingPrices();
+
+        System.out.println("TASK - 19");
+        spittingABill();
+    }
+
+    private static void spittingABill() {
+        BigDecimal bill = BigDecimal.valueOf(100);
+        int numberOfPeople = 3;
+        BigDecimal eachPersonPay = bill.divide(BigDecimal.valueOf(numberOfPeople), 2, RoundingMode.HALF_UP);
+        System.out.println("Total bill: " + bill + " zł");
+        System.out.println("Number of people: " + numberOfPeople);
+        System.out.println("Each pays: " + eachPersonPay + " zł");
     }
 
     private static void formattingPrices() {
@@ -71,8 +83,7 @@ public class Main {
                 new BigDecimal("19.99"),
                 new BigDecimal("99.99")
         );
-        DecimalFormat df = new DecimalFormat("#,##0.00");
-        bigDecimals.forEach(s -> System.out.println(df.format(s) + " zł"));
+        bigDecimals.forEach(bd -> System.out.println(bd.setScale(2) + " zł"));
     }
 
     private static void combineStringAndBigDecimal() {
