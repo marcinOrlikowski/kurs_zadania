@@ -48,6 +48,17 @@ public class Main {
 
         System.out.println("TASK - 14");
         stringComparison();
+
+        System.out.println("TASK - 15");
+        stringSplitting();
+    }
+
+    private static void stringSplitting() {
+        String sentence = "Ala ma kota";
+        String[] stringArray = sentence.split(" ");
+        for (String s : stringArray) {
+            System.out.println(s);
+        }
     }
 
     private static void stringComparison() {
