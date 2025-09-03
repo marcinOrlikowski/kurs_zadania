@@ -51,6 +51,16 @@ public class Main {
 
         System.out.println("TASK - 15");
         stringSplitting();
+
+        System.out.println("TASK - 16");
+        stringPrefixAndSuffix();
+    }
+
+    private static void stringPrefixAndSuffix() {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        System.out.println("Does it starts with \"Java\"? " + input.toLowerCase().startsWith("java"));
+        System.out.println("Does it ends with \"2025\"? " + input.endsWith("2025"));
     }
 
     private static void stringSplitting() {
