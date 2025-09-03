@@ -7,6 +7,16 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("TASK - 1");
         simpleUseOfBigDecimal();
+
+        System.out.println("TASK - 2");
+        bigDecimalFromString();
+    }
+
+    private static void bigDecimalFromString() {
+        BigDecimal bigDecimalFromString = new BigDecimal("9.99");
+        BigDecimal bigDecimalFromDouble = new BigDecimal(9.99);
+        System.out.println("From String: " + bigDecimalFromString);
+        System.out.println("From double: " + bigDecimalFromDouble);
     }
 
     private static void simpleUseOfBigDecimal() {
