@@ -29,7 +29,17 @@ public class Main {
         shoppingCartSum();
 
         System.out.println("TASK - 8");
-        averagePrice();
+        //averagePrice();
+
+        System.out.println("TASK - 9");
+        priceInDifferentCurrency();
+    }
+
+    private static void priceInDifferentCurrency() {
+        BigDecimal pln = BigDecimal.valueOf(199.99);
+        BigDecimal euroExchangeRate = BigDecimal.valueOf(4.25);
+        BigDecimal euro = pln.divide(euroExchangeRate,2 ,RoundingMode.HALF_UP);
+        System.out.println(euro);
     }
 
     private static void averagePrice() {
