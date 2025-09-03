@@ -33,12 +33,20 @@ public class Main {
 
         System.out.println("TASK - 9");
         priceInDifferentCurrency();
+
+        System.out.println("TASK - 10");
+        precisionDifference();
+    }
+
+    private static void precisionDifference() {
+        System.out.println("double: " + (0.1 + 0.2));
+        System.out.println("BigDecimal: " + (new BigDecimal("0.1").add(new BigDecimal("0.2"))));
     }
 
     private static void priceInDifferentCurrency() {
         BigDecimal pln = BigDecimal.valueOf(199.99);
         BigDecimal euroExchangeRate = BigDecimal.valueOf(4.25);
-        BigDecimal euro = pln.divide(euroExchangeRate,2 ,RoundingMode.HALF_UP);
+        BigDecimal euro = pln.divide(euroExchangeRate, 2, RoundingMode.HALF_UP);
         System.out.println(euro);
     }
 
