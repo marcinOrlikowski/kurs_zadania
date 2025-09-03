@@ -29,7 +29,7 @@ public class Main {
         shoppingCartSum();
 
         System.out.println("TASK - 8");
-        //averagePrice();
+//        averagePrice();
 
         System.out.println("TASK - 9");
         priceInDifferentCurrency();
@@ -38,7 +38,17 @@ public class Main {
         precisionDifference();
 
         System.out.println("TASK - 11");
-        stringBasicOperations();
+//        stringBasicOperations();
+
+        System.out.println("TASK - 12");
+        stringSearching();
+    }
+
+    private static void stringSearching() {
+        String sentence = "Ala ma kota";
+        String word = "ma";
+        System.out.println("Does sentence contains word? : " + sentence.contains(word));
+        System.out.println("At what index? : " + sentence.indexOf(word));
     }
 
     private static void stringBasicOperations() {
