@@ -1,9 +1,7 @@
 package BigDecimalAndString;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,7 +29,7 @@ public class Main {
         shoppingCartSum();
 
         System.out.println("TASK - 8");
-//        averagePrice();
+        averagePrice();
 
         System.out.println("TASK - 9");
         priceInDifferentCurrency();
@@ -40,7 +38,7 @@ public class Main {
         precisionDifference();
 
         System.out.println("TASK - 11");
-//        stringBasicOperations();
+        stringBasicOperations();
 
         System.out.println("TASK - 12");
         stringSearching();
@@ -55,7 +53,7 @@ public class Main {
         stringSplitting();
 
         System.out.println("TASK - 16");
-//        stringPrefixAndSuffix();
+        stringPrefixAndSuffix();
 
         System.out.println("TASK - 17");
         combineStringAndBigDecimal();
@@ -65,6 +63,15 @@ public class Main {
 
         System.out.println("TASK - 19");
         spittingABill();
+
+        System.out.println("TASK - 20");
+        roundingUp();
+    }
+
+    private static void roundingUp() {
+        BigDecimal price = BigDecimal.valueOf(0.795);
+        BigDecimal roundedUp = price.setScale(2, RoundingMode.CEILING);
+        System.out.println(roundedUp);
     }
 
     private static void spittingABill() {
@@ -94,6 +101,7 @@ public class Main {
 
     private static void stringPrefixAndSuffix() {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter text:");
         String input = sc.nextLine();
         System.out.println("Does it starts with \"Java\"? " + input.toLowerCase().startsWith("java"));
         System.out.println("Does it ends with \"2025\"? " + input.endsWith("2025"));
