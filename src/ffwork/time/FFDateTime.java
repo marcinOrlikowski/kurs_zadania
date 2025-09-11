@@ -71,9 +71,57 @@ public final class FFDateTime implements Comparable<FFDateTime> {
         }
     }
 
-    @Override
-    public int compareTo(FFDateTime o) {
-        return 0;
+    public FFDateTime plusMinutes(int minutes) {
+        int newToEpochMinutes = this.toEpochMinutes() + minutes;
+        int totalDays = newToEpochMinutes / (24 * 60);
+        int remainingMinutes = newToEpochMinutes % (24 * 60);
+        int newHour = remainingMinutes / 60;
+        int newMinute = remainingMinutes % 60;
+
+        int newYear = 2000;
+        if (totalDays >= (isLeapYear(newYear) ? 366 : 365)) {
+            totalDays -= (isLeapYear(newYear) ? 366 : 365);
+            newYear++;
+        }
+        int newMonth = 1;
+        if (totalDays >= getDaysInMonth(newMonth, newYear)) {
+            totalDays -= getDaysInMonth(newMonth, newYear);
+            newMonth++;
+        }
+        int newDay = totalDays + 1;
+
+        return new FFDateTime(newYear, newMonth, newDay, newHour, newMinute);
     }
 
+    public int toEpochMinutes() {
+        int epochYear = 2000;
+        int days = 0;
+        if (year < epochYear) {
+            return 0;
+        }
+        for (int i = epochYear; i < year; i++) {
+            for (int j = 1; j <= 12; j++) {
+                days += getDaysInMonth(j, i);
+            }
+        }
+        for (int i = 1; i < month; i++) {
+            days += getDaysInMonth(i, year);
+        }
+        days += day - 1;
+        return (days * 24 * 60) + (hour * 60) + minute;
+    }
+
+    public int minutesUntil(FFDateTime other) {
+        return other.toEpochMinutes() - this.toEpochMinutes();
+    }
+
+    @Override
+    public int compareTo(FFDateTime o) {
+        return Integer.compare(this.toEpochMinutes(), o.toEpochMinutes());
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%04d-%02d-%02dT%02d:%02d", year, month, day, hour, minute);
+    }
 }
