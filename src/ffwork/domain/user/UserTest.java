@@ -2,10 +2,12 @@ package ffwork.domain.user;
 
 public class UserTest {
     public static void main(String[] args) {
-        User orlik = new User("abc@df.com", "Orlik");
-        User orlik2 = new User("abc@df.com", "Orlik2");
-        System.out.println(orlik);
-        System.out.println(orlik2);
+        User user = new User("abc@df.com", "user");
+        User individualUser = new IndividualUser("abcd@fg.com", "individual user");
+        CompanyUser companyUser = new CompanyUser("abcdf@gh.com", "company user", "company", "12345667");
 
+        System.out.println(user);
+        System.out.println(individualUser);
+        System.out.println(companyUser);
     }
 }
