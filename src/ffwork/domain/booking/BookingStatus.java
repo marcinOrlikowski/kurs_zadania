@@ -1,5 +1,5 @@
 package ffwork.domain.booking;
 
 public enum BookingStatus {
-    PENDING, CONFIRMED, CANCELLED, COMPLETED
+    PENDING, CONFIRMED, CANCELLED, COMPLETED;
 }
