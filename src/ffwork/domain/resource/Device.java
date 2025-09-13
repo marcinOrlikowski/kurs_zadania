@@ -24,6 +24,6 @@ public class Device extends Resource {
     public String describe() {
         return "Device name: " + name + "\n" +
                 "Quantity: " + quantity + "\n" +
-                "Price per hour" + hourlyRate() + "\n";
+                "Price per hour " + hourlyRate() + "\n";
     }
 }
