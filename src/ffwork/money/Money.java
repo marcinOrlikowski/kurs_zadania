@@ -37,6 +37,10 @@ public class Money implements Comparable<Money> {
         return new Money(this.amount.multiply(BigDecimal.valueOf(m)));
     }
 
+    public Money divide(double m) {
+        return new Money(this.amount.divide(BigDecimal.valueOf(m),2,RoundingMode.HALF_UP));
+    }
+
     private void isAmountPositive(BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Money cannot have negative value");

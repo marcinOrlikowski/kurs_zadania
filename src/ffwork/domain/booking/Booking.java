@@ -70,6 +70,9 @@ public class Booking {
         return user;
     }
 
+    public FFDateTime getStart() {
+        return start;
+    }
 
     @Override
     public String toString() {
