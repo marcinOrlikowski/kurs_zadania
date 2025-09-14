@@ -61,6 +61,29 @@ public class Booking {
     public String getId() {
         return id;
     }
+
+    public Resource getResource() {
+        return Resource;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id='" + id + '\'' +
+                ", user=" + user +
+                ", Resource=" + Resource +
+                ", start=" + start +
+                ", end=" + end +
+                ", status=" + status +
+                ", calculatedPrice=" + calculatedPrice +
+                ", payment=" + payment +
+                '}';
+    }
 }
 
 

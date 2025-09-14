@@ -1,6 +1,7 @@
 package ffwork.repo;
 
 import ffwork.domain.resource.Resource;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,7 @@ public class InMemoryResourceRepository implements ResourceRepository {
     @Override
     public Optional<Resource> findByName(String name) {
         for (Resource resource : resources) {
-            if (resource.getName().equals(name)){
+            if (resource.getName().equals(name)) {
                 return Optional.of(resource);
             }
         }

@@ -2,6 +2,8 @@ package ffwork.domain.resource;
 
 import ffwork.money.Money;
 
+import java.util.Objects;
+
 public abstract class Resource {
     String name;
     Money customHourlyRate;
@@ -41,5 +43,22 @@ public abstract class Resource {
         } else {
             return baseRatePerHour();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Resource resource = (Resource) o;
+        return Objects.equals(name, resource.name) && Objects.equals(customHourlyRate, resource.customHourlyRate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, customHourlyRate);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Resource name: %s, price per hour: %s", name, hourlyRate());
     }
 }
