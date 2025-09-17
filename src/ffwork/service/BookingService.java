@@ -1,0 +1,139 @@
+package ffwork.service;
+
+import ffwork.discount.CompanyTierDiscount;
+import ffwork.discount.Discountable;
+import ffwork.discount.NoDiscount;
+import ffwork.discount.StudentDiscount;
+import ffwork.domain.booking.Booking;
+import ffwork.domain.booking.BookingStatus;
+import ffwork.domain.resource.Device;
+import ffwork.domain.resource.Resource;
+import ffwork.domain.user.User;
+import ffwork.exceptions.InvalidCommandArgumentException;
+import ffwork.money.Money;
+import ffwork.pricing.HappyHoursPricing;
+import ffwork.pricing.PricingPolicy;
+import ffwork.pricing.StandardPricing;
+import ffwork.repo.InMemoryBookingRepository;
+import ffwork.repo.InMemoryResourceRepository;
+import ffwork.repo.InMemoryUserRepository;
+import ffwork.time.FFDateTime;
+
+import java.util.List;
+import java.util.Optional;
+
+public class BookingService {
+    private InMemoryUserRepository inMemoryUserRepository;
+    private InMemoryResourceRepository inMemoryResourceRepository;
+    private InMemoryBookingRepository inMemoryBookingRepository;
+    private PricingPolicy pricingPolicy;
+    private Discountable discount;
+
+    public BookingService(InMemoryUserRepository inMemoryUserRepository, InMemoryResourceRepository inMemoryResourceRepository,
+                          InMemoryBookingRepository inMemoryBookingRepository, PricingPolicy pricingPolicy, Discountable discount) {
+        this.inMemoryUserRepository = inMemoryUserRepository;
+        this.inMemoryResourceRepository = inMemoryResourceRepository;
+        this.inMemoryBookingRepository = inMemoryBookingRepository;
+        this.pricingPolicy = pricingPolicy;
+        this.discount = discount;
+    }
+
+    Booking book(User u, Resource r, FFDateTime start, FFDateTime end) {
+        overlaps(r, start, end);
+        Booking booking = new Booking(u, r, start, end);
+        booking.changeStatus(BookingStatus.PENDING);
+        Money base = pricingPolicy.price(booking);
+        Money finalPrice = discount.applyDiscount(base, u);
+        booking.setCalculatedPrice(finalPrice);
+        inMemoryBookingRepository.add(booking);
+        return booking;
+    }
+
+    Booking book(User u, Resource r, FFDateTime start, int durationMinutes) {
+        FFDateTime end = start.plusMinutes(durationMinutes);
+        overlaps(r, start, end);
+        Booking booking = new Booking(u, r, start, end);
+        booking.changeStatus(BookingStatus.PENDING);
+        Money base = pricingPolicy.price(booking);
+        Money finalPrice = discount.applyDiscount(base, u);
+        booking.setCalculatedPrice(finalPrice);
+        inMemoryBookingRepository.add(booking);
+        return booking;
+    }
+
+    private void overlaps(Resource resource, FFDateTime start, FFDateTime end) {
+        List<Booking> byResource = inMemoryBookingRepository.findByResource(resource);
+        List<Booking> currentListOfBookings = byResource.stream()
+                .filter(booking -> booking.getStatus() == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.PENDING)
+                .toList();
+        if (resource instanceof Device) {
+            int numberOfOverlaping = 0;
+            for (Booking booking : currentListOfBookings) {
+                if (booking.getStart().toEpochMinutes() < end.toEpochMinutes() && start.toEpochMinutes() < booking.getEnd().toEpochMinutes()) {
+                    numberOfOverlaping++;
+                }
+            }
+            if (numberOfOverlaping >= ((Device) resource).getQuantity()) {
+                throw new IllegalArgumentException("Resource not available");
+            }
+        } else {
+            for (Booking booking : currentListOfBookings) {
+                if (booking.getStart().toEpochMinutes() < end.toEpochMinutes() && start.toEpochMinutes() < booking.getEnd().toEpochMinutes()) {
+                    throw new IllegalArgumentException("Resource not available");
+                }
+            }
+        }
+    }
+
+    public void setPricingPolicy(String pricing) {
+        if (pricing.equalsIgnoreCase("HAPPY_HOURS")) {
+            this.pricingPolicy = new HappyHoursPricing();
+        } else
+            this.pricingPolicy = new StandardPricing();
+    }
+
+    public void setDiscount(String discount) {
+        if (discount.equalsIgnoreCase("STUDENT")) {
+            this.discount = new StudentDiscount();
+        } else if (discount.equalsIgnoreCase("COMPANY_TIER")) {
+            this.discount = new CompanyTierDiscount();
+        } else
+            this.discount = new NoDiscount();
+    }
+
+    public void confirm(String bookingId) {
+        Booking booking = inMemoryBookingRepository.findById(bookingId).
+                orElseThrow(() -> new IllegalArgumentException("There is no booking with this id"));
+        booking.changeStatus(BookingStatus.CONFIRMED);
+    }
+
+    public void cancel(String bookingId) {
+        Booking booking = inMemoryBookingRepository.findById(bookingId).
+                orElseThrow(() -> new IllegalArgumentException("There is no booking with this id"));
+        booking.changeStatus(BookingStatus.CANCELLED);
+    }
+
+    public void complete(String bookingId) {
+        Booking booking = inMemoryBookingRepository.findById(bookingId).
+                orElseThrow(() -> new IllegalArgumentException("There is no booking with this id"));
+        booking.changeStatus(BookingStatus.COMPLETED);
+    }
+
+    public void list(User user) {
+        List<Booking> byUser = inMemoryBookingRepository.findByUser(user);
+        byUser.forEach(System.out::println);
+    }
+
+    public void list(Resource resource) {
+        List<Booking> byUser = inMemoryBookingRepository.findByResource(resource);
+        byUser.forEach(System.out::println);
+    }
+
+    public void list(BookingStatus status) {
+        inMemoryBookingRepository.findAll().stream()
+                .filter(booking -> booking.getStatus() == status)
+                .toList()
+                .forEach(System.out::println);
+    }
+
+}

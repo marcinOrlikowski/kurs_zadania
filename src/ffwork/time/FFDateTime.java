@@ -79,12 +79,13 @@ public final class FFDateTime implements Comparable<FFDateTime> {
         int newMinute = remainingMinutes % 60;
 
         int newYear = 2000;
-        if (totalDays >= (isLeapYear(newYear) ? 366 : 365)) {
+        while (totalDays >= (isLeapYear(newYear) ? 366 : 365)){
             totalDays -= (isLeapYear(newYear) ? 366 : 365);
             newYear++;
         }
         int newMonth = 1;
-        if (totalDays >= getDaysInMonth(newMonth, newYear)) {
+        while (totalDays >= getDaysInMonth(newMonth, newYear))
+        {
             totalDays -= getDaysInMonth(newMonth, newYear);
             newMonth++;
         }

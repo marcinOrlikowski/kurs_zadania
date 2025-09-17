@@ -19,7 +19,7 @@ public class Test {
 
         //plusMinutes() test:
         FFDateTime oldDateTime = FFDateTime.of(2001, 1, 1, 0, 0);
-        FFDateTime newDateTime = oldDateTime.plusMinutes(1441);
+        FFDateTime newDateTime = oldDateTime.plusMinutes(120);
         System.out.println("Before: " + oldDateTime);
         System.out.println("After: " + newDateTime);
 

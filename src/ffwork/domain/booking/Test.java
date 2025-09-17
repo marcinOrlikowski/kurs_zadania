@@ -13,7 +13,6 @@ public class Test {
                 new Room("room1", 20, Set.of("Whiteboard")),
                 FFDateTime.of(2025, 9, 13, 14, 26),
                 FFDateTime.of(2025, 9, 13, 15, 0),
-                BookingStatus.PENDING,
                 Money.of("50"),
                 null);
 
@@ -21,7 +20,6 @@ public class Test {
                 new Room("room2", 20, Set.of("Whiteboard")),
                 FFDateTime.of(2025, 9, 13, 14, 26),
                 FFDateTime.of(2025, 9, 13, 15, 0),
-                BookingStatus.PENDING,
                 Money.of("100"),
                 null);
 

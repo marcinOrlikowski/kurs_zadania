@@ -13,6 +13,11 @@ public class Room extends Resource {
         this.equipment = equipment;
     }
 
+    public Room(String name, Money customHourlyRate, int seats) {
+        super(name, customHourlyRate);
+        this.seats = seats;
+    }
+
     public Room(String name, Money customHourlyRate, int seats, Set<String> equipment) {
         super(name, customHourlyRate);
         this.seats = seats;

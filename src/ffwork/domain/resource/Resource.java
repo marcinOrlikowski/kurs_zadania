@@ -5,8 +5,8 @@ import ffwork.money.Money;
 import java.util.Objects;
 
 public abstract class Resource {
-    String name;
-    Money customHourlyRate;
+    protected String name;
+    protected Money customHourlyRate;
 
     public Resource(String name) {
         this.name = name;

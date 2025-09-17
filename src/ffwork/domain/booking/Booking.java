@@ -18,16 +18,20 @@ public class Booking {
 
     private static int counter = 1;
 
-    public Booking(User user, Resource resource, FFDateTime start, FFDateTime end, BookingStatus status, Money calculatedPrice, Payment payment) {
+    public Booking(User user, Resource resource, FFDateTime start, FFDateTime end, Money calculatedPrice, Payment payment) {
+        this(user, resource, start, end);
+        this.status = BookingStatus.PENDING;
+        this.calculatedPrice = calculatedPrice;
+        this.payment = payment;
+    }
+
+    public Booking(User user, Resource resource, FFDateTime start, FFDateTime end) {
         isFFDateTimeValid(start, end);
         this.id = idConstructor(start);
         this.user = user;
         this.Resource = resource;
         this.start = start;
         this.end = end;
-        this.status = status;
-        this.calculatedPrice = calculatedPrice;
-        this.payment = payment;
         counter++;
     }
 
@@ -43,10 +47,12 @@ public class Booking {
     }
 
     public void changeStatus(BookingStatus newStatus) {
-        if (this.status == BookingStatus.PENDING && newStatus == BookingStatus.CONFIRMED || newStatus == BookingStatus.CANCELLED) {
+        if (this.status == null) {
+            this.status = newStatus;
+        } else if (this.status == BookingStatus.PENDING && (newStatus == BookingStatus.CONFIRMED || newStatus == BookingStatus.CANCELLED)) {
             System.out.printf("Changed status from %s to %s%n", this.status, newStatus);
             this.status = newStatus;
-        } else if (this.status == BookingStatus.CONFIRMED && newStatus == BookingStatus.COMPLETED || newStatus == BookingStatus.CANCELLED) {
+        } else if (this.status == BookingStatus.CONFIRMED && (newStatus == BookingStatus.COMPLETED || newStatus == BookingStatus.CANCELLED)) {
             System.out.printf("Changed status from %s to %s%n", this.status, newStatus);
             this.status = newStatus;
         } else {
@@ -72,6 +78,22 @@ public class Booking {
 
     public FFDateTime getStart() {
         return start;
+    }
+
+    public FFDateTime getEnd() {
+        return end;
+    }
+
+    public BookingStatus getStatus() {
+        return status;
+    }
+
+    public Money getCalculatedPrice() {
+        return calculatedPrice;
+    }
+
+    public void setCalculatedPrice(Money calculatedPrice) {
+        this.calculatedPrice = calculatedPrice;
     }
 
     @Override
