@@ -36,7 +36,7 @@ public class BookingService {
         this.discount = discount;
     }
 
-    Booking book(User u, Resource r, FFDateTime start, FFDateTime end) {
+    public Booking book(User u, Resource r, FFDateTime start, FFDateTime end) {
         overlaps(r, start, end);
         Booking booking = new Booking(u, r, start, end);
         booking.changeStatus(BookingStatus.PENDING);
@@ -47,7 +47,7 @@ public class BookingService {
         return booking;
     }
 
-    Booking book(User u, Resource r, FFDateTime start, int durationMinutes) {
+    public Booking book(User u, Resource r, FFDateTime start, int durationMinutes) {
         FFDateTime end = start.plusMinutes(durationMinutes);
         overlaps(r, start, end);
         Booking booking = new Booking(u, r, start, end);

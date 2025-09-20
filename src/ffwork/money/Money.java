@@ -8,6 +8,8 @@ public class Money implements Comparable<Money> {
     private BigDecimal amount;
     private static final String CURRENCY = "PLN";
 
+    public static final Money ZERO = Money.of("0");
+
     public Money(BigDecimal amount) {
         isAmountPositive(amount);
         this.amount = amount.setScale(2, RoundingMode.HALF_UP);

@@ -11,6 +11,7 @@ import ffwork.pricing.HappyHoursPricing;
 import ffwork.repo.InMemoryBookingRepository;
 import ffwork.repo.InMemoryResourceRepository;
 import ffwork.repo.InMemoryUserRepository;
+import ffwork.report.ReportingService;
 import ffwork.time.FFDateTime;
 
 import java.util.Optional;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class Test {
     public static void main(String[] args) {
         InMemoryBookingRepository inMemoryBookingRepository = new InMemoryBookingRepository();
+        InMemoryResourceRepository inMemoryResourceRepository = new InMemoryResourceRepository();
 
         BookingService bookingService = new BookingService(new InMemoryUserRepository(),
                 new InMemoryResourceRepository(),
@@ -28,6 +30,8 @@ public class Test {
         PaymentService paymentService = new PaymentService(inMemoryBookingRepository);
 
         BillingService billingService = new BillingService(inMemoryBookingRepository);
+
+        ReportingService reportingService = new ReportingService(inMemoryBookingRepository, inMemoryResourceRepository);
 
 //        bookingService.book(new User("anna@ex.com", "Anna Nowak"),
 //                new Room("Sala Alfa", Money.of("12"),80),
