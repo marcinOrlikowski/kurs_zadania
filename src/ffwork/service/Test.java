@@ -1,6 +1,7 @@
 package ffwork.service;
 
 import ffwork.Payment.Payment;
+import ffwork.billing.Invoice;
 import ffwork.discount.NoDiscount;
 import ffwork.domain.booking.Booking;
 import ffwork.domain.booking.BookingStatus;
@@ -25,6 +26,8 @@ public class Test {
                 new NoDiscount());
 
         PaymentService paymentService = new PaymentService(inMemoryBookingRepository);
+
+        BillingService billingService = new BillingService(inMemoryBookingRepository);
 
 //        bookingService.book(new User("anna@ex.com", "Anna Nowak"),
 //                new Room("Sala Alfa", Money.of("12"),80),
@@ -79,6 +82,9 @@ public class Test {
         System.out.println(booking.getUser().getWalletBalance());
         paymentService.refund("BK-<20250915>-<3>");
         System.out.println(booking.getUser().getWalletBalance());
+
+        Invoice invoice = billingService.toInvoice(booking);
+        System.out.println(invoice);
 
 
     }
