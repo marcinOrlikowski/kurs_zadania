@@ -1,10 +1,14 @@
 package ffwork.domain.user;
 
+import ffwork.money.Money;
+
 import java.util.Objects;
 
 public class User {
     private String email;
     private String displayName;
+    private Money walletBalance = Money.of("1000");
+
 
     public User(String email, String displayName) {
         this.email = email;
@@ -25,6 +29,14 @@ public class User {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public Money getWalletBalance() {
+        return walletBalance;
+    }
+
+    public void setWalletBalance(Money walletBalance) {
+        this.walletBalance = walletBalance;
     }
 
     @Override

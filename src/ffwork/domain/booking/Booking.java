@@ -18,11 +18,10 @@ public class Booking {
 
     private static int counter = 1;
 
-    public Booking(User user, Resource resource, FFDateTime start, FFDateTime end, Money calculatedPrice, Payment payment) {
+    public Booking(User user, Resource resource, FFDateTime start, FFDateTime end, Money calculatedPrice) {
         this(user, resource, start, end);
         this.status = BookingStatus.PENDING;
         this.calculatedPrice = calculatedPrice;
-        this.payment = payment;
     }
 
     public Booking(User user, Resource resource, FFDateTime start, FFDateTime end) {
@@ -92,8 +91,16 @@ public class Booking {
         return calculatedPrice;
     }
 
+    public Payment getPayment() {
+        return payment;
+    }
+
     public void setCalculatedPrice(Money calculatedPrice) {
         this.calculatedPrice = calculatedPrice;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     @Override

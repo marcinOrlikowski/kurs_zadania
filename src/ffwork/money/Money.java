@@ -38,7 +38,7 @@ public class Money implements Comparable<Money> {
     }
 
     public Money divide(double m) {
-        return new Money(this.amount.divide(BigDecimal.valueOf(m),2,RoundingMode.HALF_UP));
+        return new Money(this.amount.divide(BigDecimal.valueOf(m), 2, RoundingMode.HALF_UP));
     }
 
     private void isAmountPositive(BigDecimal amount) {

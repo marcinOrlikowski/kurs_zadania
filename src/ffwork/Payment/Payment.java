@@ -13,9 +13,28 @@ public abstract class Payment {
         this.status = PaymentStatus.INITIATED;
     }
 
-    abstract void capture() throws IllegalStateException;
+    abstract public void capture() throws IllegalStateException;
 
-    abstract void refund() throws IllegalStateException;
+    abstract public void refund() throws IllegalStateException;
 
+    public Money getAmount() {
+        return amount;
+    }
 
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public PaymentStatus getStatus() {
+        return status;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "amount=" + amount +
+                ", paymentId='" + paymentId + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

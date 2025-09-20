@@ -57,17 +57,13 @@ public class Test {
                 new Room("room1", 20, Set.of("Whiteboard")),
                 FFDateTime.of(2025, 9, 13, 14, 26),
                 FFDateTime.of(2025, 9, 13, 15, 0),
-                BookingStatus.PENDING,
-                Money.of("50"),
-                null);
+                Money.of("50"));
 
         Booking booking2 = new Booking(new User("abc@df.com", "orlik2"),
                 new Room("room2", 20, Set.of("Whiteboard")),
                 FFDateTime.of(2025, 9, 13, 14, 26),
                 FFDateTime.of(2025, 9, 13, 15, 0),
-                BookingStatus.PENDING,
-                Money.of("100"),
-                null);
+                Money.of("100"));
 
         inMemoryBookingRepository.add(booking);
         inMemoryBookingRepository.add(booking2);

@@ -9,7 +9,6 @@ import ffwork.domain.booking.BookingStatus;
 import ffwork.domain.resource.Device;
 import ffwork.domain.resource.Resource;
 import ffwork.domain.user.User;
-import ffwork.exceptions.InvalidCommandArgumentException;
 import ffwork.money.Money;
 import ffwork.pricing.HappyHoursPricing;
 import ffwork.pricing.PricingPolicy;
@@ -20,7 +19,6 @@ import ffwork.repo.InMemoryUserRepository;
 import ffwork.time.FFDateTime;
 
 import java.util.List;
-import java.util.Optional;
 
 public class BookingService {
     private InMemoryUserRepository inMemoryUserRepository;
