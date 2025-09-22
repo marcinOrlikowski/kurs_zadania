@@ -13,7 +13,6 @@ public class CompanyTierDiscount implements Discountable {
         Map<String, Double> discountByTaxId = new HashMap<>();
         discountByTaxId.put("taxIdNumber1", 0.3);
         discountByTaxId.put("taxIdNumber2", 0.4);
-
         if (user instanceof CompanyUser) {
             Double discount = discountByTaxId.get(((CompanyUser) user).getTaxId());
             if (discount != null) {

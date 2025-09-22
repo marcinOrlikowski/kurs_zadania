@@ -139,7 +139,7 @@ public class CommandLineInterface {
             Map<Resource, Double> utilization = reportingService.utilization(from, to);
             System.out.println("OK: Printing utilization report:");
             for (Map.Entry<Resource, Double> entry : utilization.entrySet()) {
-                System.out.printf("Resource: %s, utylization percentage: %.2f%%%n", entry.getKey().getName(), entry.getValue());
+                System.out.printf("Resource: %s, utilization percentage: %.2f%%%n", entry.getKey().getName(), entry.getValue());
             }
         } else if (reportType.equalsIgnoreCase("REVENUE")) {
             Money totalRevenue = reportingService.totalRevenue();
