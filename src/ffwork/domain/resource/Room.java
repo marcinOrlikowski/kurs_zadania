@@ -1,11 +1,17 @@
 package ffwork.domain.resource;
 
 import ffwork.money.Money;
+
 import java.util.Set;
 
 public class Room extends Resource {
     private int seats;
     private Set<String> equipment;
+
+    public Room(String name, int seats) {
+        super(name);
+        this.seats = seats;
+    }
 
     public Room(String name, int seats, Set<String> equipment) {
         super(name);

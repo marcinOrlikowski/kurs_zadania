@@ -49,14 +49,7 @@ public class BookingService {
 
     public Booking book(User u, Resource r, FFDateTime start, int durationMinutes) {
         FFDateTime end = start.plusMinutes(durationMinutes);
-        overlaps(r, start, end);
-        Booking booking = new Booking(u, r, start, end);
-        booking.changeStatus(BookingStatus.PENDING);
-        Money base = pricingPolicy.price(booking);
-        Money finalPrice = discount.applyDiscount(base, u);
-        booking.setCalculatedPrice(finalPrice);
-        inMemoryBookingRepository.add(booking);
-        return booking;
+        return book(u, r, start, end);
     }
 
     private void overlaps(Resource resource, FFDateTime start, FFDateTime end) {
@@ -83,20 +76,12 @@ public class BookingService {
         }
     }
 
-    public void setPricingPolicy(String pricing) {
-        if (pricing.equalsIgnoreCase("HAPPY_HOURS")) {
-            this.pricingPolicy = new HappyHoursPricing();
-        } else
-            this.pricingPolicy = new StandardPricing();
+    public void setPricingPolicy(PricingPolicy pricingPolicy) {
+        this.pricingPolicy = pricingPolicy;
     }
 
-    public void setDiscount(String discount) {
-        if (discount.equalsIgnoreCase("STUDENT")) {
-            this.discount = new StudentDiscount();
-        } else if (discount.equalsIgnoreCase("COMPANY_TIER")) {
-            this.discount = new CompanyTierDiscount();
-        } else
-            this.discount = new NoDiscount();
+    public void setDiscount(Discountable discount) {
+        this.discount = discount;
     }
 
     public void confirm(String bookingId) {
@@ -108,6 +93,7 @@ public class BookingService {
     public void cancel(String bookingId) {
         Booking booking = inMemoryBookingRepository.findById(bookingId).
                 orElseThrow(() -> new IllegalArgumentException("There is no booking with this id"));
+        booking.getPayment().refund();
         booking.changeStatus(BookingStatus.CANCELLED);
     }
 

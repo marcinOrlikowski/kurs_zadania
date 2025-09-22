@@ -61,6 +61,6 @@ public class Invoice {
 
     @Override
     public String toString() {
-        return getItemDescription();
+        return String.format("Invoice total=%s buyer=%s", total, buyer.getDisplayName());
     }
 }

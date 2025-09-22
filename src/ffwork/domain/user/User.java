@@ -15,6 +15,10 @@ public class User {
         this.displayName = displayName;
     }
 
+    public User(String email) {
+        this.email = email;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -53,6 +57,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "email: " + email + "\n" + "Display name: " + displayName;
+        return "email: " + email + ", display name: " + displayName;
     }
 }

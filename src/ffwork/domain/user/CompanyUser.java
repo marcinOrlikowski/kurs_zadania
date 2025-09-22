@@ -6,8 +6,8 @@ public class CompanyUser extends User {
     String companyName;
     String taxId;
 
-    public CompanyUser(String email, String displayName, String companyName, String taxId) {
-        super(email, displayName);
+    public CompanyUser(String email, String companyName, String taxId) {
+        super(email);
         this.companyName = companyName;
         this.taxId = taxId;
     }
@@ -28,6 +28,10 @@ public class CompanyUser extends User {
         this.taxId = taxId;
     }
 
+    public String getDisplayName() {
+        return companyName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -43,6 +47,6 @@ public class CompanyUser extends User {
 
     @Override
     public String toString() {
-        return super.toString() + "\n" + "Company name: " + companyName + "\n" + "TaxId: " + taxId;
+        return "COMPANY: email: " + getEmail() + ", company name: " + companyName + ", taxId: " + taxId;
     }
 }

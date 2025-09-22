@@ -29,7 +29,7 @@ public class ReportingService {
         Map<Resource, Double> utilization = new HashMap<>();
         List<Resource> allResources = inMemoryResourceRepository.findAll();
         for (Resource resource : allResources) {
-            int totalReservedminuted = 0;
+            int totalReservedMinutes = 0;
             int minutesInRange = from.minutesUntil(to);
             List<Booking> bookings = inMemoryBookingRepository.findByResource(resource).stream()
                     .filter(booking -> booking.getStatus() == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.COMPLETED)
@@ -38,9 +38,9 @@ public class ReportingService {
 
             for (Booking booking : bookings) {
                 int duration = booking.durationMinutes();
-                totalReservedminuted += duration;
+                totalReservedMinutes += duration;
             }
-            double percentage = 100.0 * totalReservedminuted / minutesInRange;
+            double percentage = 100.0 * totalReservedMinutes / minutesInRange;
             BigDecimal bd = BigDecimal.valueOf(percentage);
             bd = bd.setScale(2, RoundingMode.HALF_UP);
             double rounded = bd.doubleValue();
@@ -49,7 +49,7 @@ public class ReportingService {
         return utilization;
     }
 
-    Map<String, Money> revenueByResource(FFDateTime from, FFDateTime to) {
+    public Map<String, Money> revenueByResource(FFDateTime from, FFDateTime to) {
         Map<String, Money> revenues = new HashMap<>();
         List<Resource> allResources = inMemoryResourceRepository.findAll();
         for (Resource resource : allResources) {

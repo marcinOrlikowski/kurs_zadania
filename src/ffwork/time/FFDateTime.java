@@ -7,6 +7,8 @@ public final class FFDateTime implements Comparable<FFDateTime> {
     public final int hour;
     public final int minute;
 
+    public static final String DATE_TIME_FORMAT = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
+
     public FFDateTime(int year, int month, int day, int hour, int minute) {
         isDateValid(year, month, day, hour, minute);
         this.year = year;
@@ -17,7 +19,7 @@ public final class FFDateTime implements Comparable<FFDateTime> {
     }
 
     public static FFDateTime parse(String iso) {
-        if (!iso.matches("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}")) {
+        if (!iso.matches(DATE_TIME_FORMAT)) {
             throw new IllegalArgumentException("Date has to be in \"YYYY-MM-DDTHH:MM\" format");
         }
         String[] dateAndTime = iso.split("T");
