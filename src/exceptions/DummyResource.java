@@ -6,8 +6,7 @@ final class DummyResource implements AutoCloseable {
     }
 
     @Override
-    public void close()
-    {
+    public void close() {
         throw new RuntimeException("close");
     }
 }

@@ -7,8 +7,9 @@ final class NumberParser {
             parsed = Integer.parseInt(s);
             if (parsed > 0) {
                 return parsed;
-            } else
+            } else {
                 throw new IllegalArgumentException("non-positive: " + parsed);
+            }
         } catch (NumberFormatException e) {
             throw new InvalidNumberException(String.format("Invalid number: <%s>", s), e.getCause());
         }
