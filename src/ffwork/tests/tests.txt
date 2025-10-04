@@ -1,0 +1,86 @@
+**Test 0 — Dane startowe**
+ADD_ROOM "Sala Alfa" 12 80
+OK: Room Sala Alfa successfully added
+ADD_DESK "Hot-1" hot 25
+OK: Desk Hot-1 successfully added
+ADD_DEVICE "Projektor-1" 2 40
+OK: Device Projektor-1 successfully added
+ADD_USER INDIVIDUAL anna@ex.com "Anna Nowak"
+OK: User Anna Nowak successfully added
+ADD_USER COMPANY biuro@acme.pl "ACME Sp. z o.o." 5211234567
+OK: User ACME Sp. z o.o. successfully added
+SET_PRICING STANDARD
+OK: Changed pricing policy to STANDARD
+SET_DISCOUNT NONE
+OK: Changed discount to NONE
+LIST_RESOURCES
+OK: Listing Resources...
+Resource name: Sala Alfa, price per hour: 80.00 PLN
+Resource name: Hot-1, price per hour: 25.00 PLN
+Resource name: Projektor-1, price per hour: 40.00 PLN
+LIST_USERS
+OK: Listing Users...
+INDIVIDUAL: email: anna@ex.com, display name: Anna Nowak
+COMPANY: email: biuro@acme.pl, company name: ACME Sp. z o.o., taxId: 5211234567
+
+**Test 1 — Rezerwacja i płatność (overloading)**
+BOOK biuro@acme.pl "Sala Alfa" 2025-09-15T10:00 2025-09-15T12:00
+OK: Booking successfully added
+CONFIRM BK-<20250915>-<1>
+Changed status from PENDING to CONFIRMED
+PAY BK-<20250915>-<1> CARD 4242
+OK: Successfully paid by CARD
+INVOICE BK-<20250915>-<1>
+Invoice total=160.00 PLN buyer=ACME Sp. z o.o.
+BOOK biuro@acme.pl "Sala Alfa" 2025-09-16T09:00 90
+OK: Booking successfully added
+
+**Test 2 — Kolizje**
+BOOK biuro@acme.pl "Sala Alfa" 2025-09-15T11:00 2025-09-15T13:00
+Resource not available
+BOOK biuro@acme.pl "Projektor-1" 2025-09-15T11:00 2025-09-15T13:00
+OK: Booking successfully added
+
+**Test 3 — Happy Hours**
+SET_PRICING HAPPY_HOURS
+OK: Changed pricing policy to HAPPY_HOURS
+BOOK anna@ex.com "Hot-1" 2025-09-17T14:00 2025-09-17T16:00
+OK: Booking successfully added
+
+**Test 4 — Zniżki**
+SET_DISCOUNT STUDENT
+OK: Changed discount to STUDENT
+BOOK anna@ex.com "Sala Alfa" 2025-09-18T09:00 2025-09-18T11:00
+OK: Booking successfully added
+BOOK biuro@acme.pl "Sala Alfa" 2025-09-18T12:00 2025-09-18T14:00
+OK: Booking successfully added
+
+**Test 5 — Anulowanie i refund**
+PAY BK-<20250915>-<5> CARD 4242
+There is no booking with this id
+PAY BK-<20250917>-<4> CARD 4242
+OK: Successfully paid by CARD
+CANCEL BK-<20250917>-<4>
+Changed status from PENDING to CANCELLED
+
+**Test 6 — Ilość urządzeń**
+BOOK biuro@acme.pl "Projektor-1" 2025-09-16T10:00 2025-09-16T12:00
+OK: Booking successfully added
+BOOK biuro@acme.pl "Projektor-1" 2025-09-16T10:00 2025-09-16T12:00
+OK: Booking successfully added
+BOOK biuro@acme.pl "Projektor-1" 2025-09-16T10:00 2025-09-16T12:00
+Resource not available
+
+**Test 7 — Raporty**
+REPORT UTILIZATION 2025-09-15T00:00 2025-09-20T00:00
+OK: Printing utilization report:
+Resource: Hot-1, utilization percentage: 0,00%
+Resource: Projektor-1, utilization percentage: 0,00%
+Resource: Sala Alfa, utilization percentage: 1,67%
+REPORT REVENUE 2025-09-01T00:00 2025-09-30T23:59
+OK: Printing revenue report:
+Total revenue: 160.00 PLN
+Resource name: Sala Alfa , revenue: 160.00 PLN
+Resource name: Hot-1 , revenue: 0.00 PLN
+Resource name: Projektor-1 , revenue: 0.00 PLN
+!
