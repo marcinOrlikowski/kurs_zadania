@@ -1,16 +1,21 @@
 package ffwork.time;
 
 public final class FFDateTime implements Comparable<FFDateTime> {
-    public final int year;
-    public final int month;
-    public final int day;
-    public final int hour;
-    public final int minute;
+    private final int year;
+    private final int month;
+    private final int day;
+    private final int hour;
+    private final int minute;
 
     public static final String DATE_TIME_FORMAT = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
+    private static final int EPOCH_YEAR = 2000;
+    private static final int YEAR_DAYS = 365;
+    private static final int LEAP_YEAR_DAYS = 366;
+    private static final int MINUTES_IN_DAY = 1440;
+    private static final int MINUTES_IN_HOUR = 60;
 
-    public FFDateTime(int year, int month, int day, int hour, int minute) {
-        isDateValid(year, month, day, hour, minute);
+    private FFDateTime(int year, int month, int day, int hour, int minute) {
+        validateDate(year, month, day, hour, minute);
         this.year = year;
         this.month = month;
         this.day = day;
@@ -55,7 +60,7 @@ public final class FFDateTime implements Comparable<FFDateTime> {
         }
     }
 
-    private void isDateValid(int year, int month, int day, int hour, int minute) {
+    private void validateDate(int year, int month, int day, int hour, int minute) {
         if (year < 0) {
             throw new IllegalArgumentException("Year has to be greater than 0");
         }
@@ -75,14 +80,14 @@ public final class FFDateTime implements Comparable<FFDateTime> {
 
     public FFDateTime plusMinutes(int minutes) {
         int newToEpochMinutes = this.toEpochMinutes() + minutes;
-        int totalDays = newToEpochMinutes / (24 * 60);
-        int remainingMinutes = newToEpochMinutes % (24 * 60);
-        int newHour = remainingMinutes / 60;
-        int newMinute = remainingMinutes % 60;
+        int totalDays = newToEpochMinutes / MINUTES_IN_DAY;
+        int remainingMinutes = newToEpochMinutes % MINUTES_IN_DAY;
+        int newHour = remainingMinutes / MINUTES_IN_HOUR;
+        int newMinute = remainingMinutes % MINUTES_IN_HOUR;
 
-        int newYear = 2000;
-        while (totalDays >= (isLeapYear(newYear) ? 366 : 365)){
-            totalDays -= (isLeapYear(newYear) ? 366 : 365);
+        int newYear = EPOCH_YEAR;
+        while (totalDays >= (isLeapYear(newYear) ? LEAP_YEAR_DAYS : YEAR_DAYS)){
+            totalDays -= (isLeapYear(newYear) ? LEAP_YEAR_DAYS : YEAR_DAYS);
             newYear++;
         }
         int newMonth = 1;
@@ -97,7 +102,7 @@ public final class FFDateTime implements Comparable<FFDateTime> {
     }
 
     public int toEpochMinutes() {
-        int epochYear = 2000;
+        int epochYear = EPOCH_YEAR;
         int days = 0;
         if (year < epochYear) {
             return 0;
@@ -111,11 +116,15 @@ public final class FFDateTime implements Comparable<FFDateTime> {
             days += getDaysInMonth(i, year);
         }
         days += day - 1;
-        return (days * 24 * 60) + (hour * 60) + minute;
+        return (days * MINUTES_IN_DAY) + (hour * MINUTES_IN_HOUR) + minute;
     }
 
     public int minutesUntil(FFDateTime other) {
         return other.toEpochMinutes() - this.toEpochMinutes();
+    }
+
+    public int getHour() {
+        return hour;
     }
 
     @Override
