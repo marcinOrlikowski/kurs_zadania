@@ -7,7 +7,7 @@ public class Test {
 
         //validation tests:
         try {
-            FFDateTime invalid = FFDateTime.of(2020, 13, 20, 10, 00); // throws IllegalArgumentException: Month has to be in 1-12 range
+            FFDateTime invalid = FFDateTime.of(2020, 13, 20, 10, 0); // throws IllegalArgumentException: Month has to be in 1-12 range
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -28,5 +28,18 @@ public class Test {
 
         //toCompare() test:
         System.out.println(oldDateTime.compareTo(newDateTime));
+
+        //getDaysInMonth
+        int february1900 = FFDateTime.getDaysInMonth(2, 1900);
+        int february2000 = FFDateTime.getDaysInMonth(2, 2000);
+        int february2100 = FFDateTime.getDaysInMonth(2, 2100);
+        System.out.println(february1900);
+        System.out.println(february2000);
+        System.out.println(february2100);
+
+        //isLeapYear
+        System.out.println(FFDateTime.isLeapYear(1900));
+        System.out.println(FFDateTime.isLeapYear(2000));
+        System.out.println(FFDateTime.isLeapYear(2100));
     }
 }

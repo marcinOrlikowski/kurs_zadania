@@ -42,11 +42,11 @@ public final class FFDateTime implements Comparable<FFDateTime> {
         return new FFDateTime(year, month, day, hour, minute);
     }
 
-    private static boolean isLeapYear(int year) {
+    public static boolean isLeapYear(int year) {
         return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
     }
 
-    private static int getDaysInMonth(int month, int year) {
+    public static int getDaysInMonth(int month, int year) {
         switch (month) {
             case 2 -> {
                 return isLeapYear(year) ? 29 : 28;
