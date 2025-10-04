@@ -4,7 +4,6 @@ import ffwork.domain.booking.Booking;
 import ffwork.money.Money;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class StandardPricing implements PricingPolicy {
 

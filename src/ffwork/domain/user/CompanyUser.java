@@ -6,30 +6,42 @@ public class CompanyUser extends User {
     String companyName;
     String taxId;
 
+    private static final int MIN_COMPANY_NAME_LENGHT = 5;
+    private static final int MAX_COMPANY_NAME_LENGHT = 50;
+    private static final int TAX_ID_LENGHT = 10;
+
     public CompanyUser(String email, String companyName, String taxId) {
         super(email);
-        this.companyName = companyName;
-        this.taxId = taxId;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+        validateCompanyName(companyName);
+        validateTaxId(taxId);
+        this.companyName = companyName.trim();
+        this.taxId = taxId.trim();
     }
 
     public String getTaxId() {
         return taxId;
     }
 
-    public void setTaxId(String taxId) {
-        this.taxId = taxId;
-    }
-
     public String getDisplayName() {
         return companyName;
+    }
+
+    private void validateCompanyName(String displayName) {
+        if (displayName == null || displayName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Company name cannot be empty");
+        }
+        if (displayName.trim().length() < MIN_COMPANY_NAME_LENGHT || displayName.trim().length() > MAX_COMPANY_NAME_LENGHT) {
+            throw new IllegalArgumentException("Company name need to have 3-30 characters");
+        }
+    }
+
+    private void validateTaxId(String TaxId) {
+        if (TaxId == null || TaxId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Tax id cannot be empty");
+        }
+        if (TaxId.trim().length() != TAX_ID_LENGHT) {
+            throw new IllegalArgumentException("Tax id need to have 10 characters");
+        }
     }
 
     @Override

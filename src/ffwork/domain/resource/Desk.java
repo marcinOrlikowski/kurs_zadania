@@ -7,12 +7,20 @@ public class Desk extends Resource {
 
     public Desk(String name, DeskType type) {
         super(name);
+        validateDeskType(type);
         this.type = type;
     }
 
     public Desk(String name, Money customHourlyRate, DeskType type) {
         super(name, customHourlyRate);
+        validateDeskType(type);
         this.type = type;
+    }
+
+    private void validateDeskType(DeskType type) {
+        if (type == null) {
+            throw new IllegalArgumentException("Desk type cannot be null");
+        }
     }
 
     @Override

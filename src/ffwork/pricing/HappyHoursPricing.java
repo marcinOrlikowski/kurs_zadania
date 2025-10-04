@@ -3,8 +3,6 @@ package ffwork.pricing;
 import ffwork.domain.booking.Booking;
 import ffwork.money.Money;
 
-import java.math.BigDecimal;
-
 public class HappyHoursPricing implements PricingPolicy {
     @Override
     public Money price(Booking booking) {

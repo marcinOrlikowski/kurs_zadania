@@ -9,11 +9,11 @@ public abstract class Resource {
     protected Money customHourlyRate;
 
     public Resource(String name) {
-        this.name = name;
+        this.name = name.trim();
     }
 
     public Resource(String name, Money customHourlyRate) {
-        this.name = name;
+        this.name = name.trim();
         this.customHourlyRate = customHourlyRate;
     }
 
@@ -23,14 +23,6 @@ public abstract class Resource {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Money getCustomHourlyRate() {
-        return customHourlyRate;
-    }
-
-    public void setCustomHourlyRate(Money customHourlyRate) {
-        this.customHourlyRate = customHourlyRate;
     }
 
     protected abstract Money baseRatePerHour();

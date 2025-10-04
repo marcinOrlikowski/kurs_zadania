@@ -18,25 +18,37 @@ public class Booking {
 
     private static int counter = 1;
 
-    public Booking(User user, Resource resource, FFDateTime start, FFDateTime end, Money calculatedPrice) {
-        this(user, resource, start, end);
-        this.status = BookingStatus.PENDING;
-        this.calculatedPrice = calculatedPrice;
-    }
-
     public Booking(User user, Resource resource, FFDateTime start, FFDateTime end) {
-        isFFDateTimeValid(start, end);
+        validateDates(start, end);
+        validateUser(user);
+        validateResource(resource);
         this.id = idConstructor(start);
         this.user = user;
         this.Resource = resource;
         this.start = start;
         this.end = end;
+        this.status = BookingStatus.PENDING;
         counter++;
     }
 
-    private void isFFDateTimeValid(FFDateTime start, FFDateTime end) {
+    private void validateDates(FFDateTime start, FFDateTime end) {
+        if (start == null || end == null) {
+            throw new IllegalArgumentException("Date cannot be null");
+        }
         if (start.toEpochMinutes() > end.toEpochMinutes()) {
             throw new IllegalArgumentException("End date must be later than start date");
+        }
+    }
+
+    private void validateUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
+    }
+
+    private void validateResource(Resource resource) {
+        if (resource == null) {
+            throw new IllegalArgumentException("User cannot be null");
         }
     }
 
@@ -45,18 +57,31 @@ public class Booking {
         return String.format("BK-<%s>-<%d>", date, counter);
     }
 
+
     public void changeStatus(BookingStatus newStatus) {
-        if (this.status == null) {
+        BookingStatus oldStatus = this.status;
+        if (isCancelable() && newStatus == BookingStatus.CANCELLED) {
             this.status = newStatus;
-        } else if (this.status == BookingStatus.PENDING && (newStatus == BookingStatus.CONFIRMED || newStatus == BookingStatus.CANCELLED)) {
-            System.out.printf("Changed status from %s to %s%n", this.status, newStatus);
+        } else if (isConfirmable() && newStatus == BookingStatus.CONFIRMED) {
             this.status = newStatus;
-        } else if (this.status == BookingStatus.CONFIRMED && (newStatus == BookingStatus.COMPLETED || newStatus == BookingStatus.CANCELLED)) {
-            System.out.printf("Changed status from %s to %s%n", this.status, newStatus);
+        } else if (isCompletable() && newStatus == BookingStatus.COMPLETED) {
             this.status = newStatus;
         } else {
             throw new IllegalArgumentException(String.format("Cannot change from status %s to %s", this.status, newStatus));
         }
+        System.out.printf("Changed status from %s to %s%n", oldStatus, this.status);
+    }
+
+    private boolean isCancelable() {
+        return this.status == BookingStatus.PENDING || this.status == BookingStatus.CONFIRMED;
+    }
+
+    private boolean isConfirmable() {
+        return this.status == BookingStatus.PENDING;
+    }
+
+    private boolean isCompletable() {
+        return this.status == BookingStatus.CONFIRMED;
     }
 
     public int durationMinutes() {

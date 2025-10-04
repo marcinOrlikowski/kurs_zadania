@@ -10,26 +10,41 @@ public class Room extends Resource {
 
     public Room(String name, int seats) {
         super(name);
+        validateSeats(seats);
         this.seats = seats;
     }
 
     public Room(String name, int seats, Set<String> equipment) {
-        super(name);
-        this.seats = seats;
+        this(name, seats);
+        validateEquipment(equipment);
         this.equipment = equipment;
     }
 
     public Room(String name, Money customHourlyRate, int seats) {
         super(name, customHourlyRate);
+        validateSeats(seats);
         this.seats = seats;
     }
 
     public Room(String name, Money customHourlyRate, int seats, Set<String> equipment) {
         super(name, customHourlyRate);
+        validateSeats(seats);
+        validateEquipment(equipment);
         this.seats = seats;
         this.equipment = equipment;
     }
 
+    private void validateSeats(int seats) {
+        if (seats < 0) {
+            throw new IllegalArgumentException("Seats number cannot be negative");
+        }
+    }
+
+    private void validateEquipment(Set<String> equipment) {
+        if (equipment == null || equipment.isEmpty()) {
+            throw new IllegalArgumentException("Equipment is empty");
+        }
+    }
 
     @Override
     protected Money baseRatePerHour() {

@@ -7,16 +7,24 @@ public class Device extends Resource {
 
     public Device(String name, int quantity) {
         super(name);
+        validateQuantity(quantity);
         this.quantity = quantity;
     }
 
     public Device(String name, Money customHourlyRate, int quantity) {
         super(name, customHourlyRate);
+        validateQuantity(quantity);
         this.quantity = quantity;
     }
 
     public int getQuantity() {
         return quantity;
+    }
+
+    private void validateQuantity(int quantity) {
+        if (quantity < 0) {
+            throw new IllegalArgumentException("Quantity cannot be negative");
+        }
     }
 
     @Override

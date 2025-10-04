@@ -1,18 +1,13 @@
 package ffwork.service;
 
-import ffwork.discount.CompanyTierDiscount;
 import ffwork.discount.Discountable;
-import ffwork.discount.NoDiscount;
-import ffwork.discount.StudentDiscount;
 import ffwork.domain.booking.Booking;
 import ffwork.domain.booking.BookingStatus;
 import ffwork.domain.resource.Device;
 import ffwork.domain.resource.Resource;
 import ffwork.domain.user.User;
 import ffwork.money.Money;
-import ffwork.pricing.HappyHoursPricing;
 import ffwork.pricing.PricingPolicy;
-import ffwork.pricing.StandardPricing;
 import ffwork.repo.InMemoryBookingRepository;
 import ffwork.repo.InMemoryResourceRepository;
 import ffwork.repo.InMemoryUserRepository;
@@ -36,12 +31,11 @@ public class BookingService {
         this.discount = discount;
     }
 
-    public Booking book(User u, Resource r, FFDateTime start, FFDateTime end) {
-        overlaps(r, start, end);
-        Booking booking = new Booking(u, r, start, end);
-        booking.changeStatus(BookingStatus.PENDING);
+    public Booking book(User user, Resource resource, FFDateTime start, FFDateTime end) {
+        overlaps(resource, start, end);
+        Booking booking = new Booking(user, resource, start, end);
         Money base = pricingPolicy.price(booking);
-        Money finalPrice = discount.applyDiscount(base, u);
+        Money finalPrice = discount.applyDiscount(base, user);
         booking.setCalculatedPrice(finalPrice);
         inMemoryBookingRepository.add(booking);
         return booking;

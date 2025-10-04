@@ -1,6 +1,5 @@
 package ffwork.Payment;
 
-import ffwork.domain.booking.Booking;
 import ffwork.money.Money;
 
 public class WalletPayment extends Payment {

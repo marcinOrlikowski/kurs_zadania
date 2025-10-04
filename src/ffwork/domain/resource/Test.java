@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Test {
     public static void main(String[] args) {
-        Room room = new Room("Classroom", 20, Set.of("Chairs", "Table", "whiteboard"));
+        Room room = new Room("Classroom", 5, Set.of("Chairs", "Table", "whiteboard"));
         System.out.println(room.describe());
         Desk desk = new Desk("test desk", Money.of("10"), Desk.DeskType.HOT);
         System.out.println(desk.describe());

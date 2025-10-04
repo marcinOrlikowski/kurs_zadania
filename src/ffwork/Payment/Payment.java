@@ -21,10 +21,6 @@ public abstract class Payment {
         return amount;
     }
 
-    public String getPaymentId() {
-        return paymentId;
-    }
-
     public PaymentStatus getStatus() {
         return status;
     }
