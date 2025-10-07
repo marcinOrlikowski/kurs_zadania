@@ -26,24 +26,6 @@ public class CompanyUser extends User {
         return companyName;
     }
 
-    private void validateCompanyName(String displayName) {
-        if (displayName == null || displayName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Company name cannot be empty");
-        }
-        if (displayName.trim().length() < MIN_COMPANY_NAME_LENGHT || displayName.trim().length() > MAX_COMPANY_NAME_LENGHT) {
-            throw new IllegalArgumentException("Company name need to have 3-30 characters");
-        }
-    }
-
-    private void validateTaxId(String TaxId) {
-        if (TaxId == null || TaxId.trim().isEmpty()) {
-            throw new IllegalArgumentException("Tax id cannot be empty");
-        }
-        if (TaxId.trim().length() != TAX_ID_LENGHT) {
-            throw new IllegalArgumentException("Tax id need to have 10 characters");
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -60,5 +42,23 @@ public class CompanyUser extends User {
     @Override
     public String toString() {
         return "COMPANY: email: " + getEmail() + ", company name: " + companyName + ", taxId: " + taxId;
+    }
+
+    private void validateCompanyName(String displayName) {
+        if (displayName == null || displayName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Company name cannot be empty");
+        }
+        if (displayName.trim().length() < MIN_COMPANY_NAME_LENGHT || displayName.trim().length() > MAX_COMPANY_NAME_LENGHT) {
+            throw new IllegalArgumentException("Company name need to have 3-30 characters");
+        }
+    }
+
+    private void validateTaxId(String TaxId) {
+        if (TaxId == null || TaxId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Tax id cannot be empty");
+        }
+        if (TaxId.trim().length() != TAX_ID_LENGHT) {
+            throw new IllegalArgumentException("Tax id need to have 10 characters");
+        }
     }
 }

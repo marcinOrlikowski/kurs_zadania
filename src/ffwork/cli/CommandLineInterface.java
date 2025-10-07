@@ -346,7 +346,7 @@ public class CommandLineInterface {
         return "ERROR: Invalid format : " + command.getDescription();
     }
 
-    private static List<String> getTokens(String input) {
+    private List<String> getTokens(String input) {
         List<String> tokens = new ArrayList<>();
         Pattern pattern = Pattern.compile("(<[^>]+>)|(\"[^\"]+\")|(\\S+)");
         Matcher matcher = pattern.matcher(input);
@@ -356,7 +356,7 @@ public class CommandLineInterface {
         return tokens;
     }
 
-    private static String getBookingId(String input) {
+    private String getBookingId(String input) {
         Pattern pattern = Pattern.compile("(<[^>]+>)|(\"[^\"]+\")|(\\S+)");
         Matcher matcher = pattern.matcher(input);
         matcher.find(); // skipping first tokken

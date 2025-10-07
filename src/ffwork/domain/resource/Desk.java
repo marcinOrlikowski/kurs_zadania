@@ -17,17 +17,6 @@ public class Desk extends Resource {
         this.type = type;
     }
 
-    private void validateDeskType(DeskType type) {
-        if (type == null) {
-            throw new IllegalArgumentException("Desk type cannot be null");
-        }
-    }
-
-    @Override
-    protected Money baseRatePerHour() {
-        return Money.of("5");
-    }
-
     @Override
     public String describe() {
         return "Desk name: " + name + "\n" +
@@ -37,6 +26,17 @@ public class Desk extends Resource {
 
     public enum DeskType {
         HOT, FIXED
+    }
+
+    private void validateDeskType(DeskType type) {
+        if (type == null) {
+            throw new IllegalArgumentException("Desk type cannot be null");
+        }
+    }
+
+    @Override
+    protected Money baseRatePerHour() {
+        return Money.of("5");
     }
 }
 

@@ -38,20 +38,6 @@ public class PaymentService {
         return walletPayment;
     }
 
-    private static String createPaymentId(Booking booking) {
-        String paymentId = booking.getId().replaceAll("BK", "PAYMENT");
-        return paymentId;
-    }
-
-    private static void sufficientFunds(Booking booking) {
-        Money userBalance = booking.getUser().getWalletBalance();
-        Money calculatedPrice = booking.getCalculatedPrice();
-        if (userBalance.compareTo(calculatedPrice) < 0) {
-            throw new IllegalArgumentException("User balance insufficient");
-        }
-        booking.getUser().setWalletBalance(userBalance.subtract(calculatedPrice));
-    }
-
     public void refund(String bookingId) {
         Optional<Booking> byId = inMemoryBookingRepository.findById(bookingId);
         Booking booking = byId.orElseThrow(() -> new NoSuchElementException("There is no booking with this id"));
@@ -65,5 +51,19 @@ public class PaymentService {
             booking.getUser().setWalletBalance(userBalance.add(calculatedPrice));
         }
         payment.refund();
+    }
+
+    private static String createPaymentId(Booking booking) {
+        String paymentId = booking.getId().replaceAll("BK", "PAYMENT");
+        return paymentId;
+    }
+
+    private static void sufficientFunds(Booking booking) {
+        Money userBalance = booking.getUser().getWalletBalance();
+        Money calculatedPrice = booking.getCalculatedPrice();
+        if (userBalance.compareTo(calculatedPrice) < 0) {
+            throw new IllegalArgumentException("User balance insufficient");
+        }
+        booking.getUser().setWalletBalance(userBalance.subtract(calculatedPrice));
     }
 }

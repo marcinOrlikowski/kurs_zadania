@@ -46,30 +46,6 @@ public class BookingService {
         return book(u, r, start, end);
     }
 
-    private void overlaps(Resource resource, FFDateTime start, FFDateTime end) {
-        List<Booking> byResource = inMemoryBookingRepository.findByResource(resource);
-        List<Booking> currentListOfBookings = byResource.stream()
-                .filter(booking -> booking.getStatus() == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.PENDING)
-                .toList();
-        if (resource instanceof Device) {
-            int numberOfOverlaping = 0;
-            for (Booking booking : currentListOfBookings) {
-                if (booking.getStart().toEpochMinutes() < end.toEpochMinutes() && start.toEpochMinutes() < booking.getEnd().toEpochMinutes()) {
-                    numberOfOverlaping++;
-                }
-            }
-            if (numberOfOverlaping >= ((Device) resource).getQuantity()) {
-                throw new IllegalArgumentException("Resource not available");
-            }
-        } else {
-            for (Booking booking : currentListOfBookings) {
-                if (booking.getStart().toEpochMinutes() < end.toEpochMinutes() && start.toEpochMinutes() < booking.getEnd().toEpochMinutes()) {
-                    throw new IllegalArgumentException("Resource not available");
-                }
-            }
-        }
-    }
-
     public void setPricingPolicy(PricingPolicy pricingPolicy) {
         this.pricingPolicy = pricingPolicy;
     }
@@ -114,4 +90,27 @@ public class BookingService {
                 .forEach(System.out::println);
     }
 
+    private void overlaps(Resource resource, FFDateTime start, FFDateTime end) {
+        List<Booking> byResource = inMemoryBookingRepository.findByResource(resource);
+        List<Booking> currentListOfBookings = byResource.stream()
+                .filter(booking -> booking.getStatus() == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.PENDING)
+                .toList();
+        if (resource instanceof Device) {
+            int numberOfOverlaping = 0;
+            for (Booking booking : currentListOfBookings) {
+                if (booking.getStart().toEpochMinutes() < end.toEpochMinutes() && start.toEpochMinutes() < booking.getEnd().toEpochMinutes()) {
+                    numberOfOverlaping++;
+                }
+            }
+            if (numberOfOverlaping >= ((Device) resource).getQuantity()) {
+                throw new IllegalArgumentException("Resource not available");
+            }
+        } else {
+            for (Booking booking : currentListOfBookings) {
+                if (booking.getStart().toEpochMinutes() < end.toEpochMinutes() && start.toEpochMinutes() < booking.getEnd().toEpochMinutes()) {
+                    throw new IllegalArgumentException("Resource not available");
+                }
+            }
+        }
+    }
 }

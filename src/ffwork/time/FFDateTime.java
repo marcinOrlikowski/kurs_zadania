@@ -60,24 +60,6 @@ public final class FFDateTime implements Comparable<FFDateTime> {
         }
     }
 
-    private void validateDate(int year, int month, int day, int hour, int minute) {
-        if (year < 0) {
-            throw new IllegalArgumentException("Year has to be greater than 0");
-        }
-        if (month < 1 || month > 12) {
-            throw new IllegalArgumentException("Month has to be in 1-12 range");
-        }
-        if (day < 1 || day > getDaysInMonth(month, year)) {
-            throw new IllegalArgumentException("Day has to be in 1-" + getDaysInMonth(month, year) + " range");
-        }
-        if (hour < 0 || hour > 23) {
-            throw new IllegalArgumentException("Hour has to be in 0-23 range");
-        }
-        if (minute < 0 || minute > 59) {
-            throw new IllegalArgumentException("Minutes has to be in 0-59 range");
-        }
-    }
-
     public FFDateTime plusMinutes(int minutes) {
         int newToEpochMinutes = this.toEpochMinutes() + minutes;
         int totalDays = newToEpochMinutes / MINUTES_IN_DAY;
@@ -86,13 +68,12 @@ public final class FFDateTime implements Comparable<FFDateTime> {
         int newMinute = remainingMinutes % MINUTES_IN_HOUR;
 
         int newYear = EPOCH_YEAR;
-        while (totalDays >= (isLeapYear(newYear) ? LEAP_YEAR_DAYS : YEAR_DAYS)){
+        while (totalDays >= (isLeapYear(newYear) ? LEAP_YEAR_DAYS : YEAR_DAYS)) {
             totalDays -= (isLeapYear(newYear) ? LEAP_YEAR_DAYS : YEAR_DAYS);
             newYear++;
         }
         int newMonth = 1;
-        while (totalDays >= getDaysInMonth(newMonth, newYear))
-        {
+        while (totalDays >= getDaysInMonth(newMonth, newYear)) {
             totalDays -= getDaysInMonth(newMonth, newYear);
             newMonth++;
         }
@@ -135,5 +116,23 @@ public final class FFDateTime implements Comparable<FFDateTime> {
     @Override
     public String toString() {
         return String.format("%04d-%02d-%02dT%02d:%02d", year, month, day, hour, minute);
+    }
+
+    private void validateDate(int year, int month, int day, int hour, int minute) {
+        if (year < 0) {
+            throw new IllegalArgumentException("Year has to be greater than 0");
+        }
+        if (month < 1 || month > 12) {
+            throw new IllegalArgumentException("Month has to be in 1-12 range");
+        }
+        if (day < 1 || day > getDaysInMonth(month, year)) {
+            throw new IllegalArgumentException("Day has to be in 1-" + getDaysInMonth(month, year) + " range");
+        }
+        if (hour < 0 || hour > 23) {
+            throw new IllegalArgumentException("Hour has to be in 0-23 range");
+        }
+        if (minute < 0 || minute > 59) {
+            throw new IllegalArgumentException("Minutes has to be in 0-59 range");
+        }
     }
 }

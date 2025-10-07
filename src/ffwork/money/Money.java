@@ -11,13 +11,6 @@ public final class Money implements Comparable<Money> {
 
     public static final Money ZERO = new Money(BigDecimal.ZERO);
 
-    private Money(BigDecimal amount) {
-        if (amount != null) {
-            isAmountPositive(amount);
-            this.amount = amount.setScale(2, RoundingMode.HALF_UP);
-        }
-    }
-
     public static Money of(String amount) {
         if (amount == null) {
             throw new IllegalArgumentException("Cannot provide null");
@@ -67,15 +60,6 @@ public final class Money implements Comparable<Money> {
         return new Money(this.amount.divide(BigDecimal.valueOf(m), 2, RoundingMode.HALF_UP));
     }
 
-    private void isAmountPositive(BigDecimal amount) {
-        if (amount == null) {
-            throw new IllegalArgumentException("Cannot provide null");
-        }
-        if (amount.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Money cannot have negative value");
-        }
-    }
-
     @Override
     public String toString() {
         return amount + " " + CURRENCY;
@@ -96,5 +80,21 @@ public final class Money implements Comparable<Money> {
     @Override
     public int hashCode() {
         return Objects.hashCode(amount);
+    }
+
+    private Money(BigDecimal amount) {
+        if (amount != null) {
+            isAmountPositive(amount);
+            this.amount = amount.setScale(2, RoundingMode.HALF_UP);
+        }
+    }
+
+    private void isAmountPositive(BigDecimal amount) {
+        if (amount == null) {
+            throw new IllegalArgumentException("Cannot provide null");
+        }
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Money cannot have negative value");
+        }
     }
 }

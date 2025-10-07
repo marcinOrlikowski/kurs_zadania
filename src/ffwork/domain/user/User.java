@@ -40,6 +40,23 @@ public class User {
         this.walletBalance = walletBalance;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(email, user.email) && Objects.equals(taxId, user.taxId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, taxId);
+    }
+
+    @Override
+    public String toString() {
+        return "email: " + email + ", display name: " + taxId;
+    }
+
     private void validateMail(String email) {
         if (email == null || email.trim().isEmpty()) {
             throw new IllegalArgumentException("email cannot be empty");
@@ -56,22 +73,5 @@ public class User {
         if (displayName.trim().length() < MIN_DISPLAY_NAME_LENGHT || displayName.trim().length() > MAX_DISPLAY_NAME_LENGHT) {
             throw new IllegalArgumentException("Display Name need to have 3-30 characters");
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(email, user.email) && Objects.equals(taxId, user.taxId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(email, taxId);
-    }
-
-    @Override
-    public String toString() {
-        return "email: " + email + ", display name: " + taxId;
     }
 }

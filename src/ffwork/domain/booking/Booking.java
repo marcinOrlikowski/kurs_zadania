@@ -31,33 +31,6 @@ public class Booking {
         counter++;
     }
 
-    private void validateDates(FFDateTime start, FFDateTime end) {
-        if (start == null || end == null) {
-            throw new IllegalArgumentException("Date cannot be null");
-        }
-        if (start.toEpochMinutes() > end.toEpochMinutes()) {
-            throw new IllegalArgumentException("End date must be later than start date");
-        }
-    }
-
-    private void validateUser(User user) {
-        if (user == null) {
-            throw new IllegalArgumentException("User cannot be null");
-        }
-    }
-
-    private void validateResource(Resource resource) {
-        if (resource == null) {
-            throw new IllegalArgumentException("User cannot be null");
-        }
-    }
-
-    private String idConstructor(FFDateTime d) {
-        String date = d.toString().split("T")[0].replaceAll("-", "");
-        return String.format("BK-<%s>-<%d>", date, counter);
-    }
-
-
     public void changeStatus(BookingStatus newStatus) {
         BookingStatus oldStatus = this.status;
         if (isCancelable() && newStatus == BookingStatus.CANCELLED) {
@@ -70,18 +43,6 @@ public class Booking {
             throw new IllegalArgumentException(String.format("Cannot change from status %s to %s", this.status, newStatus));
         }
         System.out.printf("Changed status from %s to %s%n", oldStatus, this.status);
-    }
-
-    private boolean isCancelable() {
-        return this.status == BookingStatus.PENDING || this.status == BookingStatus.CONFIRMED;
-    }
-
-    private boolean isConfirmable() {
-        return this.status == BookingStatus.PENDING;
-    }
-
-    private boolean isCompletable() {
-        return this.status == BookingStatus.CONFIRMED;
     }
 
     public int durationMinutes() {
@@ -140,6 +101,44 @@ public class Booking {
                 ", calculatedPrice=" + calculatedPrice +
                 ", payment=" + payment +
                 '}';
+    }
+
+    private void validateDates(FFDateTime start, FFDateTime end) {
+        if (start == null || end == null) {
+            throw new IllegalArgumentException("Date cannot be null");
+        }
+        if (start.toEpochMinutes() > end.toEpochMinutes()) {
+            throw new IllegalArgumentException("End date must be later than start date");
+        }
+    }
+
+    private void validateUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
+    }
+
+    private void validateResource(Resource resource) {
+        if (resource == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
+    }
+
+    private String idConstructor(FFDateTime d) {
+        String date = d.toString().split("T")[0].replaceAll("-", "");
+        return String.format("BK-<%s>-<%d>", date, counter);
+    }
+
+    private boolean isCancelable() {
+        return this.status == BookingStatus.PENDING || this.status == BookingStatus.CONFIRMED;
+    }
+
+    private boolean isConfirmable() {
+        return this.status == BookingStatus.PENDING;
+    }
+
+    private boolean isCompletable() {
+        return this.status == BookingStatus.CONFIRMED;
     }
 }
 

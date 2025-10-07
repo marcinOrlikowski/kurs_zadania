@@ -21,10 +21,11 @@ public class Device extends Resource {
         return quantity;
     }
 
-    private void validateQuantity(int quantity) {
-        if (quantity < 0) {
-            throw new IllegalArgumentException("Quantity cannot be negative");
-        }
+    @Override
+    public String describe() {
+        return "Device name: " + name + "\n" +
+                "Quantity: " + quantity + "\n" +
+                "Price per hour " + hourlyRate() + "\n";
     }
 
     @Override
@@ -32,10 +33,9 @@ public class Device extends Resource {
         return Money.of("100");
     }
 
-    @Override
-    public String describe() {
-        return "Device name: " + name + "\n" +
-                "Quantity: " + quantity + "\n" +
-                "Price per hour " + hourlyRate() + "\n";
+    private void validateQuantity(int quantity) {
+        if (quantity < 0) {
+            throw new IllegalArgumentException("Quantity cannot be negative");
+        }
     }
 }
