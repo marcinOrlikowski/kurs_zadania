@@ -23,9 +23,9 @@ public class Pair<T, U> {
         return second;
     }
     /*
-    *   Dane:* `p = Pair.of(null, "x")`.
-    **  Czynność:* sprawdź `p.first()` oraz reprezentację tekstową.
-    **  Oczekiwany wynik:* `p.first()` → `null`; `toString()` zawiera `x` i nie zgłasza wyjątków.
+     *   Dane:* `p = Pair.of(null, "x")`.
+     **  Czynność:* sprawdź `p.first()` oraz reprezentację tekstową.
+     **  Oczekiwany wynik:* `p.first()` → `null`; `toString()` zawiera `x` i nie zgłasza wyjątków.
      */
 
     @Override

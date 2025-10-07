@@ -7,9 +7,7 @@ public class Stats<T extends Number> {
     private final T[] data;
 
     public Stats(T[] data) {
-        if (data == null) {
-            throw new IllegalArgumentException("Null reference");
-        }
+        Objects.requireNonNull(data, "Array cannot be null");
         if (Arrays.stream(data).anyMatch(Objects::isNull)) {
             throw new IllegalArgumentException("Provided Array has empty elements");
         }

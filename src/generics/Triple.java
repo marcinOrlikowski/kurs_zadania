@@ -13,7 +13,7 @@ public final class Triple<T, U, V> {
         this.third = third;
     }
 
-    public static <T,U,V> Triple<T,U,V> of(T first, U second, V third) {
+    public static <T, U, V> Triple<T, U, V> of(T first, U second, V third) {
         return new Triple<>(first, second, third);
     }
 

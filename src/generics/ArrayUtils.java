@@ -1,18 +1,14 @@
 package generics;
 
+import java.util.Objects;
+
 public class ArrayUtils {
     private ArrayUtils() {
     }
 
-    ;
-
     public static <T> void swap(T[] arr, int i, int j) {
-        if (arr == null) {
-            throw new NullPointerException();
-        }
-        if (i > arr.length || j > arr.length || i < 0 || j < 0) {
-            throw new IndexOutOfBoundsException();
-        }
+        Objects.requireNonNull(arr, "Array cannot be null");
+        validateIndexes(arr, i, j);
         if (i != j) {
             T temp = arr[i];
             arr[i] = arr[j];
@@ -22,9 +18,7 @@ public class ArrayUtils {
 
     public static <T> int indexOf(T[] arr, T value) {
         // pierwszy indeks wystąpienia; brak → -1
-        if (arr == null) {
-            throw new NullPointerException("Provided array is null");
-        }
+        Objects.requireNonNull(arr, "Array cannot be null");
         int index = -1;
         if (value == null) {
             for (int i = 0; i < arr.length; i++) {
@@ -45,9 +39,7 @@ public class ArrayUtils {
     }
 
     public static <T> int lastIndexOf(T[] arr, T value) {
-        if (arr == null) {
-            throw new NullPointerException("Provided array is null");
-        }
+        Objects.requireNonNull(arr, "Array cannot be null");
         int index = -1;
         if (value == null) {
             for (int i = 0; i < arr.length; i++) {
@@ -87,5 +79,11 @@ public class ArrayUtils {
             }
         }
         return true;
+    }
+
+    private static <T> void validateIndexes(T[] arr, int i, int j) {
+        if (i > arr.length || j > arr.length || i < 0 || j < 0) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 }

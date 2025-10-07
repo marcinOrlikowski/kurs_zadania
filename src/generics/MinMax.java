@@ -4,12 +4,11 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class MinMax {
-    private MinMax() {}
+    private MinMax() {
+    }
 
-    public static <T extends Comparable<? super T>> Pair<T,T> minMax(T[] arr) {
-        if (arr == null) {
-            throw new IllegalArgumentException("Null reference");
-        }
+    public static <T extends Comparable<? super T>> Pair<T, T> minMax(T[] arr) {
+        Objects.requireNonNull(arr, "Array cannot be null");
         if (Arrays.stream(arr).anyMatch(Objects::isNull)) {
             throw new IllegalArgumentException("Provided Array has empty elements");
         }
