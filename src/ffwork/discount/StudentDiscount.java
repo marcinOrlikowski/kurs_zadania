@@ -6,7 +6,6 @@ import ffwork.money.Money;
 
 
 public class StudentDiscount implements Discountable {
-
     @Override
     public Money applyDiscount(Money base, User user) {
         if (user instanceof IndividualUser) {

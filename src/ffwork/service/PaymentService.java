@@ -39,12 +39,10 @@ public class PaymentService {
     }
 
     public void refund(String bookingId) {
-        Optional<Booking> byId = inMemoryBookingRepository.findById(bookingId);
-        Booking booking = byId.orElseThrow(() -> new NoSuchElementException("There is no booking with this id"));
+        Optional<Booking> bookingsById = inMemoryBookingRepository.findById(bookingId);
+        Booking booking = bookingsById.orElseThrow(() -> new NoSuchElementException("There is no booking with this id"));
         Payment payment = booking.getPayment();
-        if (payment == null) {
-            throw new NoSuchElementException("There is no payment for this booking");
-        }
+        validatePayment(payment);
         if (payment instanceof WalletPayment) {
             Money userBalance = booking.getUser().getWalletBalance();
             Money calculatedPrice = booking.getCalculatedPrice();
@@ -53,9 +51,14 @@ public class PaymentService {
         payment.refund();
     }
 
+    private static void validatePayment(Payment payment) {
+        if (payment == null) {
+            throw new NoSuchElementException("There is no payment for this booking");
+        }
+    }
+
     private static String createPaymentId(Booking booking) {
-        String paymentId = booking.getId().replaceAll("BK", "PAYMENT");
-        return paymentId;
+        return booking.getId().replaceAll("BK", "PAYMENT");
     }
 
     private static void sufficientFunds(Booking booking) {

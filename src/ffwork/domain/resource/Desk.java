@@ -17,13 +17,6 @@ public class Desk extends Resource {
         this.type = type;
     }
 
-    @Override
-    public String describe() {
-        return "Desk name: " + name + "\n" +
-                "Desk type: " + type + "\n" +
-                "Desk price per hour: " + hourlyRate() + "\n";
-    }
-
     public enum DeskType {
         HOT, FIXED
     }
@@ -32,6 +25,13 @@ public class Desk extends Resource {
         if (type == null) {
             throw new IllegalArgumentException("Desk type cannot be null");
         }
+    }
+
+    @Override
+    public String describe() {
+        return "Desk name: " + name + "\n" +
+                "Desk type: " + type + "\n" +
+                "Desk price per hour: " + hourlyRate() + "\n";
     }
 
     @Override

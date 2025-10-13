@@ -26,24 +26,11 @@ public class ReportingService {
     }
 
     public Map<Resource, Double> utilization(FFDateTime from, FFDateTime to) {
+        int minutesInRange = from.minutesUntil(to);
         Map<Resource, Double> utilization = new HashMap<>();
         List<Resource> allResources = inMemoryResourceRepository.findAll();
         for (Resource resource : allResources) {
-            int totalReservedMinutes = 0;
-            int minutesInRange = from.minutesUntil(to);
-            List<Booking> bookings = inMemoryBookingRepository.findByResource(resource).stream()
-                    .filter(booking -> booking.getStatus() == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.COMPLETED)
-                    .filter(booking -> booking.getStart().toEpochMinutes() >= from.toEpochMinutes() && booking.getEnd().toEpochMinutes() <= to.toEpochMinutes())
-                    .toList();
-
-            for (Booking booking : bookings) {
-                int duration = booking.durationMinutes();
-                totalReservedMinutes += duration;
-            }
-            double percentage = 100.0 * totalReservedMinutes / minutesInRange;
-            BigDecimal bd = BigDecimal.valueOf(percentage);
-            bd = bd.setScale(2, RoundingMode.HALF_UP);
-            double rounded = bd.doubleValue();
+            double rounded = getRoundedUtilizationValue(from, to, resource, minutesInRange);
             utilization.put(resource, rounded);
         }
         return utilization;
@@ -53,38 +40,68 @@ public class ReportingService {
         Map<String, Money> revenues = new HashMap<>();
         List<Resource> allResources = inMemoryResourceRepository.findAll();
         for (Resource resource : allResources) {
-            Money totalMoney = Money.ZERO;
-            List<Booking> bookings = inMemoryBookingRepository.findByResource(resource).stream()
-                    .filter(booking -> booking.getStatus() == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.COMPLETED)
-                    .filter(booking -> booking.getStart().toEpochMinutes() >= from.toEpochMinutes() && booking.getEnd().toEpochMinutes() <= to.toEpochMinutes())
-                    .toList();
-
-            for (Booking booking : bookings) {
-                Payment payment = booking.getPayment();
-                if (payment != null) {
-                    if (payment.getStatus() == PaymentStatus.CAPTURED) {
-                        totalMoney = totalMoney.add(payment.getAmount());
-                    }
-                }
-            }
+            List<Booking> bookings = getBookingsInRange(from, to, resource);
+            Money totalMoney = getTotalMoney(bookings);
             revenues.put(resource.getName(), totalMoney);
         }
         return revenues;
     }
 
     public Money totalRevenue() {
-        Money totalRevenue = Money.ZERO;
         List<Booking> bookings = inMemoryBookingRepository.findAll();
-
-        for (Booking booking : bookings) {
-            Payment payment = booking.getPayment();
-            if (payment != null) {
-                if (payment.getStatus() == PaymentStatus.CAPTURED) {
-                    totalRevenue = totalRevenue.add(payment.getAmount());
-                }
-            }
-        }
-        return totalRevenue;
+        return getTotalMoney(bookings);
     }
 
+    private double getRoundedUtilizationValue(FFDateTime from, FFDateTime to, Resource resource, int minutesInRange) {
+        List<Booking> bookingsInRange = getBookingsInRange(from, to, resource);
+        int totalReservedMinutes = getTotalReservedMinutes(bookingsInRange);
+        double percentage = 100.0 * totalReservedMinutes / minutesInRange;
+        BigDecimal bd = BigDecimal.valueOf(percentage);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
+    private static int getTotalReservedMinutes(List<Booking> bookings) {
+        int totalReservedMinutes = 0;
+        for (Booking booking : bookings) {
+            int duration = booking.durationMinutes();
+            totalReservedMinutes += duration;
+        }
+        return totalReservedMinutes;
+    }
+
+    private List<Booking> getBookingsInRange(FFDateTime from, FFDateTime to, Resource resource) {
+        return inMemoryBookingRepository.findByResource(resource).stream()
+                .filter(ReportingService::isConfirmedOrCompleted)
+                .filter(booking -> isBookingInRange(from, to, booking))
+                .toList();
+    }
+
+    private static boolean isBookingInRange(FFDateTime from, FFDateTime to, Booking booking) {
+        return booking.getStart().toEpochMinutes() >= from.toEpochMinutes() && booking.getEnd().toEpochMinutes() <= to.toEpochMinutes();
+    }
+
+    private static boolean isConfirmedOrCompleted(Booking booking) {
+        return booking.getStatus() == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.COMPLETED;
+    }
+
+    private static Money getTotalMoney(List<Booking> bookings) {
+        Money totalMoney = Money.ZERO;
+        for (Booking booking : bookings) {
+            Money amount = getPaymentAmount(booking);
+            totalMoney = totalMoney.add(amount);
+        }
+        return totalMoney;
+    }
+
+    private static Money getPaymentAmount(Booking booking) {
+        Money amount = Money.ZERO;
+        Payment payment = booking.getPayment();
+        if (payment != null) {
+            if (payment.getStatus() == PaymentStatus.CAPTURED) {
+                amount = payment.getAmount();
+            }
+        }
+        return amount;
+    }
 }

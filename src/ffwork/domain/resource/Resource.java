@@ -8,6 +8,10 @@ public abstract class Resource {
     protected String name;
     protected Money customHourlyRate;
 
+    protected abstract Money baseRatePerHour();
+
+    public abstract String describe();
+
     public Resource(String name) {
         this.name = name.trim();
     }
@@ -24,10 +28,6 @@ public abstract class Resource {
     public void setName(String name) {
         this.name = name;
     }
-
-    protected abstract Money baseRatePerHour();
-
-    public abstract String describe();
 
     public Money hourlyRate() {
         if (customHourlyRate != null) {

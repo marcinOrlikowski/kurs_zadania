@@ -91,26 +91,42 @@ public class BookingService {
     }
 
     private void overlaps(Resource resource, FFDateTime start, FFDateTime end) {
-        List<Booking> byResource = inMemoryBookingRepository.findByResource(resource);
-        List<Booking> currentListOfBookings = byResource.stream()
-                .filter(booking -> booking.getStatus() == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.PENDING)
+        List<Booking> BookingsByResource = inMemoryBookingRepository.findByResource(resource);
+        List<Booking> confirmedOrPendingBookings = BookingsByResource.stream()
+                .filter(BookingService::isConfirmedOrPending)
                 .toList();
         if (resource instanceof Device) {
-            int numberOfOverlaping = 0;
-            for (Booking booking : currentListOfBookings) {
-                if (booking.getStart().toEpochMinutes() < end.toEpochMinutes() && start.toEpochMinutes() < booking.getEnd().toEpochMinutes()) {
-                    numberOfOverlaping++;
-                }
-            }
-            if (numberOfOverlaping >= ((Device) resource).getQuantity()) {
+            checkDeviceAvailability((Device) resource, start, end, confirmedOrPendingBookings);
+        } else {
+            checkResourceAvailability(start, end, confirmedOrPendingBookings);
+        }
+    }
+
+    private static void checkResourceAvailability(FFDateTime start, FFDateTime end, List<Booking> confirmedOrPendingBookings) {
+        for (Booking booking : confirmedOrPendingBookings) {
+            if (isOverlapping(start, end, booking)) {
                 throw new IllegalArgumentException("Resource not available");
             }
-        } else {
-            for (Booking booking : currentListOfBookings) {
-                if (booking.getStart().toEpochMinutes() < end.toEpochMinutes() && start.toEpochMinutes() < booking.getEnd().toEpochMinutes()) {
-                    throw new IllegalArgumentException("Resource not available");
-                }
+        }
+    }
+
+    private static void checkDeviceAvailability(Device resource, FFDateTime start, FFDateTime end, List<Booking> confirmedOrPendingBookings) {
+        int numberOfOverlaping = 0;
+        for (Booking booking : confirmedOrPendingBookings) {
+            if (isOverlapping(start, end, booking)) {
+                numberOfOverlaping++;
             }
         }
+        if (numberOfOverlaping >= resource.getQuantity()) {
+            throw new IllegalArgumentException("Resource not available");
+        }
+    }
+
+    private static boolean isOverlapping(FFDateTime start, FFDateTime end, Booking booking) {
+        return booking.getStart().toEpochMinutes() < end.toEpochMinutes() && start.toEpochMinutes() < booking.getEnd().toEpochMinutes();
+    }
+
+    private static boolean isConfirmedOrPending(Booking booking) {
+        return booking.getStatus() == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.PENDING;
     }
 }

@@ -34,6 +34,18 @@ public class Room extends Resource {
         this.equipment = equipment;
     }
 
+    private void validateSeats(int seats) {
+        if (seats < 0) {
+            throw new IllegalArgumentException("Seats number cannot be negative");
+        }
+    }
+
+    private void validateEquipment(Set<String> equipment) {
+        if (equipment == null || equipment.isEmpty()) {
+            throw new IllegalArgumentException("Equipment is empty");
+        }
+    }
+
     @Override
     public String describe() {
         StringBuilder sb = new StringBuilder();
@@ -51,17 +63,5 @@ public class Room extends Resource {
     @Override
     protected Money baseRatePerHour() {
         return Money.of("50");
-    }
-
-    private void validateSeats(int seats) {
-        if (seats < 0) {
-            throw new IllegalArgumentException("Seats number cannot be negative");
-        }
-    }
-
-    private void validateEquipment(Set<String> equipment) {
-        if (equipment == null || equipment.isEmpty()) {
-            throw new IllegalArgumentException("Equipment is empty");
-        }
     }
 }

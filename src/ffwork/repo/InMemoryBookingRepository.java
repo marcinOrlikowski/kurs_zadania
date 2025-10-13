@@ -12,15 +12,23 @@ public class InMemoryBookingRepository implements BookingRepository {
     List<Booking> bookings = new ArrayList<>();
 
     @Override
-    public void add(Booking b) {
-        if (b == null) {
-            throw new NullPointerException("Cannot add null reference");
-        }
-        findById(b.getId())
+    public void add(Booking booking) {
+        validateNull(booking);
+        validateIfBookingAlreadyExists(booking);
+        bookings.add(booking);
+    }
+
+    private void validateIfBookingAlreadyExists(Booking booking) {
+        findById(booking.getId())
                 .ifPresent(p -> {
                     throw new IllegalArgumentException("Object with such id already exists");
                 });
-        bookings.add(b);
+    }
+
+    private static void validateNull(Booking booking) {
+        if (booking == null) {
+            throw new NullPointerException("Cannot add null reference");
+        }
     }
 
     @Override
@@ -38,19 +46,17 @@ public class InMemoryBookingRepository implements BookingRepository {
         return bookings;
     }
 
-    //todo
     @Override
-    public List<Booking> findByResource(Resource r) {
+    public List<Booking> findByResource(Resource resource) {
         return bookings.stream()
-                .filter(booking -> booking.getResource().equals(r))
+                .filter(booking -> booking.getResource().equals(resource))
                 .toList();
     }
 
-    //todo
     @Override
-    public List<Booking> findByUser(User u) {
+    public List<Booking> findByUser(User user) {
         return bookings.stream()
-                .filter(booking -> booking.getUser().equals(u))
+                .filter(booking -> booking.getUser().equals(user))
                 .toList();
     }
 }

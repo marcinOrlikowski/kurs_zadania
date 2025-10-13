@@ -11,15 +11,23 @@ public class InMemoryResourceRepository implements ResourceRepository {
     List<Resource> resources = new ArrayList<>();
 
     @Override
-    public void add(Resource r) {
-        if (r == null) {
-            throw new NullPointerException("Cannot add null reference");
-        }
-        findByName(r.getName())
+    public void add(Resource resource) {
+        validateNull(resource);
+        validateIfResourceAlreadyExists(resource);
+        resources.add(resource);
+    }
+
+    private void validateIfResourceAlreadyExists(Resource resource) {
+        findByName(resource.getName())
                 .ifPresent(p -> {
                     throw new IllegalArgumentException("Object with such name already exists");
                 });
-        resources.add(r);
+    }
+
+    private static void validateNull(Resource resource) {
+        if (resource == null) {
+            throw new NullPointerException("Cannot add null reference");
+        }
     }
 
     @Override
@@ -38,9 +46,9 @@ public class InMemoryResourceRepository implements ResourceRepository {
     }
 
     @Override
-    public List<Resource> findByType(Class<? extends Resource> t) {
+    public List<Resource> findByType(Class<? extends Resource> type) {
         return resources.stream()
-                .filter(t::isInstance)
+                .filter(type::isInstance)
                 .collect(Collectors.toList());
     }
 }

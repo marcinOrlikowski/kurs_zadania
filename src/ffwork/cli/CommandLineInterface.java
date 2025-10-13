@@ -136,19 +136,27 @@ public class CommandLineInterface {
         FFDateTime from = FFDateTime.parse(tokens.get(2));
         FFDateTime to = FFDateTime.parse(tokens.get(3));
         if (reportType.equalsIgnoreCase("UTILIZATION")) {
-            Map<Resource, Double> utilization = reportingService.utilization(from, to);
-            System.out.println("OK: Printing utilization report:");
-            for (Map.Entry<Resource, Double> entry : utilization.entrySet()) {
-                System.out.printf("Resource: %s, utilization percentage: %.2f%%%n", entry.getKey().getName(), entry.getValue());
-            }
+            printUtilizationReport(from, to);
         } else if (reportType.equalsIgnoreCase("REVENUE")) {
-            Money totalRevenue = reportingService.totalRevenue();
-            Map<String, Money> revenue = reportingService.revenueByResource(from, to);
-            System.out.println("OK: Printing revenue report:");
-            System.out.printf("Total revenue: %s \n", totalRevenue);
-            for (Map.Entry<String, Money> entry : revenue.entrySet()) {
-                System.out.printf("Resource name: %s , revenue: %s%n", entry.getKey(), entry.getValue());
-            }
+            printRevenueReport(from, to);
+        }
+    }
+
+    private void printRevenueReport(FFDateTime from, FFDateTime to) {
+        Money totalRevenue = reportingService.totalRevenue();
+        Map<String, Money> revenue = reportingService.revenueByResource(from, to);
+        System.out.println("OK: Printing revenue report:");
+        System.out.printf("Total revenue: %s \n", totalRevenue);
+        for (Map.Entry<String, Money> entry : revenue.entrySet()) {
+            System.out.printf("Resource name: %s , revenue: %s%n", entry.getKey(), entry.getValue());
+        }
+    }
+
+    private void printUtilizationReport(FFDateTime from, FFDateTime to) {
+        Map<Resource, Double> utilization = reportingService.utilization(from, to);
+        System.out.println("OK: Printing utilization report:");
+        for (Map.Entry<Resource, Double> entry : utilization.entrySet()) {
+            System.out.printf("Resource: %s, utilization percentage: %.2f%%%n", entry.getKey().getName(), entry.getValue());
         }
     }
 
@@ -171,8 +179,9 @@ public class CommandLineInterface {
         } else if (paymentType.equalsIgnoreCase("WALLET") && tokens.size() == 3) {
             paymentService.payByWallet(bookingId);
             System.out.println("OK: Successfully paid by WALLET");
-        } else
+        } else {
             throw new InvalidCommandArgumentException(invalidCommandMassage(Command.PAY));
+        }
 
     }
 
@@ -187,8 +196,9 @@ public class CommandLineInterface {
         } else if (discount.equalsIgnoreCase("COMPANY_TIER")) {
             bookingService.setDiscount(companyTierDiscount);
             System.out.println("OK: Changed discount to COMPANY_TIER");
-        } else
+        } else {
             throw new InvalidCommandArgumentException(invalidCommandMassage(Command.SET_DISCOUNT));
+        }
     }
 
     private void setPricing(List<String> tokens) {
@@ -199,8 +209,9 @@ public class CommandLineInterface {
         } else if (pricingPolicy.equalsIgnoreCase("HAPPY_HOURS")) {
             bookingService.setPricingPolicy(happyHoursPricing);
             System.out.println("OK: Changed pricing policy to HAPPY_HOURS");
-        } else
+        } else {
             throw new InvalidCommandArgumentException(invalidCommandMassage(Command.SET_PRICING));
+        }
     }
 
     private void listBookings() {
@@ -212,7 +223,6 @@ public class CommandLineInterface {
             bookings.forEach(System.out::println);
         }
     }
-
 
     private void cancel(String input) {
         String bookingId = getBookingId(input);
@@ -263,8 +273,9 @@ public class CommandLineInterface {
             String name = tokens.get(1);
             int quantity = Integer.parseInt(tokens.get(2));
             device = new Device(name, quantity);
-        } else
+        } else {
             throw new InvalidCommandArgumentException(invalidCommandMassage(Command.ADD_DESK));
+        }
         inMemoryResourceRepository.add(device);
         System.out.printf("OK: Device %s successfully added %n", device.getName());
     }
@@ -280,8 +291,9 @@ public class CommandLineInterface {
             String name = tokens.get(1);
             Desk.DeskType type = Desk.DeskType.valueOf(tokens.get(2).toUpperCase());
             desk = new Desk(name, type);
-        } else
+        } else {
             throw new InvalidCommandArgumentException(invalidCommandMassage(Command.ADD_DESK));
+        }
         inMemoryResourceRepository.add(desk);
         System.out.printf("OK: Desk %s successfully added %n", desk.getName());
     }
@@ -297,8 +309,9 @@ public class CommandLineInterface {
             int seats = Integer.parseInt(tokens.get(2));
             Money customHourlyRate = Money.of(tokens.get(3));
             room = new Room(name, customHourlyRate, seats);
-        } else
+        } else {
             throw new InvalidCommandArgumentException(invalidCommandMassage(Command.ADD_ROOM));
+        }
         inMemoryResourceRepository.add(room);
         System.out.printf("OK: Room %s successfully added %n", room.getName());
     }
@@ -324,8 +337,9 @@ public class CommandLineInterface {
             String companyName = tokens.get(3);
             String nip = tokens.get(4);
             user = new CompanyUser(email, companyName, nip);
-        } else
+        } else {
             throw new InvalidCommandArgumentException(invalidCommandMassage(Command.ADD_USER));
+        }
         inMemoryUserRepository.add(user);
         System.out.printf("OK: User %s successfully added %n", user.getDisplayName());
     }

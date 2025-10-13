@@ -7,6 +7,8 @@ import ffwork.money.Money;
 import ffwork.time.FFDateTime;
 
 public class Booking {
+    private static int counter = 1;
+
     private String id;
     private User user;
     private Resource Resource;
@@ -15,8 +17,6 @@ public class Booking {
     private BookingStatus status;
     private Money calculatedPrice;
     private Payment payment;
-
-    private static int counter = 1;
 
     public Booking(User user, Resource resource, FFDateTime start, FFDateTime end) {
         validateDates(start, end);
@@ -89,20 +89,6 @@ public class Booking {
         this.payment = payment;
     }
 
-    @Override
-    public String toString() {
-        return "Booking{" +
-                "id='" + id + '\'' +
-                ", user=" + user +
-                ", Resource=" + Resource +
-                ", start=" + start +
-                ", end=" + end +
-                ", status=" + status +
-                ", calculatedPrice=" + calculatedPrice +
-                ", payment=" + payment +
-                '}';
-    }
-
     private void validateDates(FFDateTime start, FFDateTime end) {
         if (start == null || end == null) {
             throw new IllegalArgumentException("Date cannot be null");
@@ -124,9 +110,9 @@ public class Booking {
         }
     }
 
-    private String idConstructor(FFDateTime d) {
-        String date = d.toString().split("T")[0].replaceAll("-", "");
-        return String.format("BK-<%s>-<%d>", date, counter);
+    private String idConstructor(FFDateTime date) {
+        String dateInString = date.toString().split("T")[0].replaceAll("-", "");
+        return String.format("BK-<%s>-<%d>", dateInString, counter);
     }
 
     private boolean isCancelable() {
@@ -139,6 +125,20 @@ public class Booking {
 
     private boolean isCompletable() {
         return this.status == BookingStatus.CONFIRMED;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id='" + id + '\'' +
+                ", user=" + user +
+                ", Resource=" + Resource +
+                ", start=" + start +
+                ", end=" + end +
+                ", status=" + status +
+                ", calculatedPrice=" + calculatedPrice +
+                ", payment=" + payment +
+                '}';
     }
 }
 

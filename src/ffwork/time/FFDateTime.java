@@ -1,27 +1,18 @@
 package ffwork.time;
 
 public final class FFDateTime implements Comparable<FFDateTime> {
+    public static final String DATE_TIME_FORMAT = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
+    public static final int EPOCH_YEAR = 2000;
+    public static final int YEAR_DAYS = 365;
+    public static final int LEAP_YEAR_DAYS = 366;
+    public static final int MINUTES_IN_DAY = 1440;
+    public static final int MINUTES_IN_HOUR = 60;
+
     private final int year;
     private final int month;
     private final int day;
     private final int hour;
     private final int minute;
-
-    public static final String DATE_TIME_FORMAT = "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}";
-    private static final int EPOCH_YEAR = 2000;
-    private static final int YEAR_DAYS = 365;
-    private static final int LEAP_YEAR_DAYS = 366;
-    private static final int MINUTES_IN_DAY = 1440;
-    private static final int MINUTES_IN_HOUR = 60;
-
-    private FFDateTime(int year, int month, int day, int hour, int minute) {
-        validateDate(year, month, day, hour, minute);
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.hour = hour;
-        this.minute = minute;
-    }
 
     public static FFDateTime parse(String iso) {
         if (!iso.matches(DATE_TIME_FORMAT)) {
@@ -40,24 +31,6 @@ public final class FFDateTime implements Comparable<FFDateTime> {
 
     public static FFDateTime of(int year, int month, int day, int hour, int minute) {
         return new FFDateTime(year, month, day, hour, minute);
-    }
-
-    public static boolean isLeapYear(int year) {
-        return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
-    }
-
-    public static int getDaysInMonth(int month, int year) {
-        switch (month) {
-            case 2 -> {
-                return isLeapYear(year) ? 29 : 28;
-            }
-            case 4, 6, 9, 11 -> {
-                return 30;
-            }
-            default -> {
-                return 31;
-            }
-        }
     }
 
     public FFDateTime plusMinutes(int minutes) {
@@ -118,6 +91,15 @@ public final class FFDateTime implements Comparable<FFDateTime> {
         return String.format("%04d-%02d-%02dT%02d:%02d", year, month, day, hour, minute);
     }
 
+    private FFDateTime(int year, int month, int day, int hour, int minute) {
+        validateDate(year, month, day, hour, minute);
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.hour = hour;
+        this.minute = minute;
+    }
+
     private void validateDate(int year, int month, int day, int hour, int minute) {
         if (year < 0) {
             throw new IllegalArgumentException("Year has to be greater than 0");
@@ -133,6 +115,24 @@ public final class FFDateTime implements Comparable<FFDateTime> {
         }
         if (minute < 0 || minute > 59) {
             throw new IllegalArgumentException("Minutes has to be in 0-59 range");
+        }
+    }
+
+    static boolean isLeapYear(int year) {
+        return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
+    }
+
+    static int getDaysInMonth(int month, int year) {
+        switch (month) {
+            case 2 -> {
+                return isLeapYear(year) ? 29 : 28;
+            }
+            case 4, 6, 9, 11 -> {
+                return 30;
+            }
+            default -> {
+                return 31;
+            }
         }
     }
 }
