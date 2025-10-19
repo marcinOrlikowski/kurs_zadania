@@ -39,7 +39,7 @@ public class Main {
         entrySet.forEach(System.out::println);
 
         System.out.println("\n--- Testing new map ---");
-        NestedTwoKeyHashMap<String, String, Integer> map = new NestedTwoKeyHashMap<>();
+        TwoKeyMap<String, String, Integer> map = new NestedTwoKeyHashMap<>();
         map.put("A", "1", 10);
         map.put("B", "2", 20);
 
@@ -48,13 +48,6 @@ public class Main {
         System.out.println("\nContents of the set:");
         for (var e : set) {
             System.out.println(e);
-        }
-
-        // Adding a new element to the map
-        map.put("C", "3", 30);
-        System.out.println("\nAfter adding a new entry:");
-        for (var e : set) {
-            System.out.println(e); // also sees the new element!
         }
 
         System.out.println("\nPrinting all keys (keySet):");
@@ -94,9 +87,8 @@ public class Main {
         Map<String, Integer> z = map1.column("z");
         System.out.println(z);
 
-        System.out.println("\nNull testing:");
-        map1.put("null","abc",null);
-
+//        System.out.println("\nNull testing:");
+//        map1.put("null","abc",null);
 
         System.out.println("\nTest from task description");
         TwoKeyMap<String, String, Integer> grades = new NestedTwoKeyHashMap<>();
@@ -105,5 +97,4 @@ public class Main {
         System.out.println(grades.get("Alice", "Math")); // 5
         System.out.println(grades.row("Alice")); // {Math=5, CS=4}
     }
-
 }
