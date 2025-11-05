@@ -1,0 +1,10 @@
+2025-11-03 20:00:00 INFO: Aplikacja uruchomiona.
+2025-11-03 20:00:01 INFO: Łączenie z bazą danych...
+2025-11-03 20:00:02 INFO: Połączono pomyślnie.
+2025-11-03 20:00:05 WARNING: Długi czas odpowiedzi z API.
+2025-11-03 20:00:10 ERROR: Nie udało się pobrać danych użytkownika id=123.
+2025-11-03 20:00:15 INFO: Użytkownik 'admin' zalogowany.
+2025-11-03 20:00:15 INFO: Użytkownik 'mark' - mark@gmail.com zalogowany.
+2025-11-03 20:00:20 ERROR: Przekroczono limit czasu dla zapytania SQL.
+2025-11-03 20:00:25 INFO: Zapisano raport.
+2025-11-03 20:00:30 ERROR: Błąd parsowania odpowiedzi JSON.

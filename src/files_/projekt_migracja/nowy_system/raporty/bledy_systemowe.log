@@ -1,0 +1,3 @@
+2025-11-03 20:00:10 ERROR: Nie udało się pobrać danych użytkownika id=123.
+2025-11-03 20:00:20 ERROR: Przekroczono limit czasu dla zapytania SQL.
+2025-11-03 20:00:30 ERROR: Błąd parsowania odpowiedzi JSON.

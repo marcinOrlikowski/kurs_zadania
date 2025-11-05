@@ -1,0 +1,10 @@
+# Plik użytkowników systemu
+# ID,NAZWA,EMAIL,STATUS
+1,Anna Nowak,anna@example.com,active
+2,Jan Kowalski,jan@example.com,inactive
+3,Piotr Wiśniewski,piotr@example.com,active
+-- 3.5 ,Piotr Wiśniewski,piotr@example.com,active
+4,Maria Wójcik,maria@example.com,active
+5,Krzysztof Zając,krzysztof@example.com,inactive
+// komentarz
+6,Marek Zając,mark@example.com,inactive
